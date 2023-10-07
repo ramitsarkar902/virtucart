@@ -58,7 +58,6 @@ export const signin = async (req, res, next) => {
       expiresIn: "24h",
     });
     const { password, ...others } = user._doc;
-    console.log(token);
     res
       .cookie("access_token", token, {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
