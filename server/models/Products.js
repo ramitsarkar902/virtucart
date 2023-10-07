@@ -27,6 +27,9 @@ const ProductSchema = new mongoose.Schema(
       type: String,
     },
     images: [],
+    sales: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
