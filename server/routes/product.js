@@ -7,6 +7,7 @@ import {
   getProductByCategory,
   geta,
   getall,
+  productSold,
 } from "../controllers/products.js";
 import { verifyToken } from "../verifyToken.js";
 
@@ -25,5 +26,7 @@ router.post("/", create);
 router.get("/best/product", getBestProduct);
 
 router.get("/new/products", getNewProducts);
+
+router.post("/sell/:id", productSold);
 
 export default router;

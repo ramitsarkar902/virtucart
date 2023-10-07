@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { createError } from "../error.js";
 import Product from "../models/Products.js";
+import User from "../models/User.js";
 
 export const create = async (req, res, next) => {
   try {
@@ -73,6 +74,22 @@ export const getNewProducts = async (req, res, next) => {
       },
     ]);
     res.status(200).json(a);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const productSold = async (req, res, next) => {
+  try {
+    await Product.findByIdAndUpdate(req.params.id, {
+      $inc: { sales: 1, stock: -1 },
+    });
+    await User.findByIdAndUpdate(req.body.userId, {
+      $push: {
+        productOrders: req.params.id,
+      },
+    });
+    res.status(200).json("Product confirmed!");
   } catch (error) {
     next(error);
   }
