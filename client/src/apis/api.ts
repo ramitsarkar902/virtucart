@@ -1,7 +1,7 @@
 import axios from "axios";
 import { api_url } from "./helper";
 import { LoginProp, SignupProp } from "../services/Props";
-import { storeUserData } from "../store/userSlice";
+import { storeToken, storeUserData } from "../store/userSlice";
 
 export const SignupApi = async (formDets: SignupProp) => {
   try {
@@ -20,8 +20,9 @@ export const LoginApi = async (formDets: LoginProp, dispatch: any) => {
     const res = await axios.post(`${api_url}/auth/signin`, {
       email: formDets.email,
       password: formDets.password,
-    });
-    dispatch(storeUserData(res.data));
+    });    
+    dispatch(storeUserData(res.data.userData));
+    dispatch(storeToken(res.data.token));
     return res.status;
   } catch (error: any) {
     return error.response.data;
