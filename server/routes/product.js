@@ -2,9 +2,11 @@ import express from "express";
 import {
   create,
   deleteProduct,
+  getBestProduct,
+  getNewProducts,
+  getProductByCategory,
   geta,
   getall,
-  getProductByCategory,
 } from "../controllers/products.js";
 import { verifyToken } from "../verifyToken.js";
 
@@ -19,5 +21,9 @@ router.get("/category/:id", verifyToken, getProductByCategory);
 router.get("/all/products", verifyToken, getall);
 
 router.post("/", create);
+
+router.get("/best/product", getBestProduct);
+
+router.get("/new/products", getNewProducts);
 
 export default router;
