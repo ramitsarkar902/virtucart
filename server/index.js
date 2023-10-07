@@ -5,8 +5,9 @@ import express from "express";
 import mongoose from "mongoose";
 
 import authRoutes from "./routes/auth.js";
+import productRoutes from "./routes/product.js";
 import userRoutes from "./routes/user.js";
-/*import contactRoutes from "./routes/contactus.js";
+/*
 import eventRoutes from "./routes/event.js";
 import newsRoutes from "./routes/news.js";
 import productRoutes from "./routes/product.js";
@@ -45,8 +46,8 @@ app.use((err, req, res, next) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/products", productRoutes);
 /* 
-app.use("/api/news", newsRoutes);
 app.use("/api/event", eventRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/contact", contactRoutes);

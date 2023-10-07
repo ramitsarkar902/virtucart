@@ -34,9 +34,17 @@ export const signup = async (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
-    const newUser = new User({ ...req.body, password: hash });
+    const user = new User({ ...req.body, password: hash });
 
-    await newUser.save();
+    await user.save();
+    const token = jwt.sign({ id: user._id }, process.env.JWT, {
+      expiresIn: "24h",
+    });
+    const { password, createdAt, updatedAt, __v, ...others } = user._doc;
+    res.status(200).json({
+      userData: others,
+      token,
+    });
     res.status(200).send("User has been created!");
   } catch (err) {
     next(err);
@@ -57,14 +65,11 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT, {
       expiresIn: "24h",
     });
-    const { password, ...others } = user._doc;
-    res
-      .cookie("access_token", token, {
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-        httpOnly: true,
-      })
-      .status(200)
-      .json(others);
+    const { password, createdAt, updatedAt, __v, ...others } = user._doc;
+    res.status(200).json({
+      userData: others,
+      token,
+    });
   } catch (err) {
     next(err);
   }
