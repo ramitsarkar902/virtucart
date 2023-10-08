@@ -45,15 +45,15 @@ const Signup = () => {
     e.preventDefault();
     const res = await SignupApi(formDets);
     if (typeof res === "string") {
-      toast.warn(res);z
+      toast.warn(res);
     } else {
       toast.success("User successfully created");
     }
   };
 
   return (
-    <div className="w-full h-full flex flex-col relative">
-      <div className="wrapper w-[95%] mx-auto rounded-3xl flex flex-col gap-5">
+    <div className="w-full h-[100vh] flex flex-col relative items-center justify-center">
+      <div className="wrapper w-[95%] mx-auto rounded-3xl flex flex-col gap-8">
         <div className="title w-full flex items-center justify-between">
           <h1 className="text-[1.5rem] font-[500]">
             Virtu<span>Cart</span>

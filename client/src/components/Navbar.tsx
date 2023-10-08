@@ -6,6 +6,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../store/store";
 import { setActive } from "../store/userSlice";
+import { motion } from "framer-motion";
+
 const Navbar = () => {
   const { userData, active } = useSelector((state: IRootState) => state.user);
   const dispatch = useDispatch();
@@ -59,7 +61,7 @@ const Navbar = () => {
                             className="w-[1.5rem]"
                           />
                         </div>
-                        <h1>{userData.name.split(" ")[0]}</h1>
+                        <h1>{userData.name && userData.name.split(" ")[0]}</h1>
                       </div>
                     ) : (
                       <h1 className="">{n.name}</h1>
@@ -100,7 +102,7 @@ const Navbar = () => {
           if (n.id !== 1) {
             return (
               <div
-                className="eachItem flex items-center relative"
+                className="eachItem flex items-center relative cursor-pointer"
                 key={n.id}
                 onClick={(e) => {
                   e.preventDefault();
@@ -133,19 +135,25 @@ const Navbar = () => {
                     className="text-white"
                   />
                 )}
-                <div className="modal absolute top-10 w-[40vw] left-0">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: mod2 === n.id ? 1 : 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.75 }}
+                  className="modal absolute top-8 w-fit whitespace-nowrap left-0"
+                >
                   {mod2 === n.id && (
-                    <div className="fields flex flex-col p-2 gap-4 bg-[#111111] rounded-xl">
+                    <div className="fields flex flex-col p-2 gap-5 bg-[#111111] rounded-xl">
                       {n.fields.map((f) => {
                         return (
-                          <div className="eachsub cursor-pointer" key={f.id}>
+                          <div className="eachsub cursor-pointer p-2 hover:bg-[#09dd6d] rounded-xl hover:text-black transition-all ease-in duration-150" key={f.id}>
                             {f.name}
                           </div>
                         );
                       })}
                     </div>
                   )}
-                </div>
+                </motion.div>
               </div>
             );
           }
