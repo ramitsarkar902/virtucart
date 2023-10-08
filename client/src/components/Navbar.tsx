@@ -235,6 +235,10 @@ const Navbar = () => {
                       <div
                         className="eachsub cursor-pointer text-[#99dd6d] p-2 hover:bg-[#09dd6d] rounded-xl hover:text-black transition-all ease-in duration-150"
                         key={f.id}
+                        onClick={(e)=>{
+                          e.preventDefault();
+                          Logout(dispatch,navigate);
+                        }}
                       >
                         {f.name}
                       </div>
