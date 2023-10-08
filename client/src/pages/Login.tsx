@@ -52,8 +52,8 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col relative">
-      <div className="wrapper w-[95%] mx-auto rounded-3xl flex flex-col gap-5">
+    <div className="w-full h-[100vh] flex flex-col items-center justify-center relative">
+      <div className="wrapper w-[95%] mx-auto rounded-3xl flex flex-col gap-10">
         <div className="title w-full flex items-center justify-between">
           <h1 className="text-[1.5rem] font-[500]">
             Virtu<span>Cart</span>

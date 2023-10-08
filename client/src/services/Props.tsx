@@ -14,3 +14,11 @@ export interface UserDets {
   img: string;
   email: string;
 }
+
+export interface BestSellingProduct {
+  _id:string;
+  title:string;
+  description:string;
+  brand:string;
+  thumbnail:string;
+}

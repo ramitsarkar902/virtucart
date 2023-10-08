@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { IRootState } from "./store/store";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const { isLoggedIn } = useSelector((state: IRootState) => state.user);
   return (
