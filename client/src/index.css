@@ -33,3 +33,8 @@ span {
   color: #09dd6d;
   border: 1px solid #09dd6d;
 }
+
+.signup,.login {
+  background: rgb(25,25,25);
+  background: linear-gradient(163deg, rgba(25,25,25,1) 35%, rgba(9,221,109,1) 200%);
+}

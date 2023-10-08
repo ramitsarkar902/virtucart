@@ -15,6 +15,10 @@ export const NavItems = [
                 id:3,
                 name:"Help",
             },
+            {
+                id:4,
+                name:"Logout",
+            },
         ],
     },
     {

@@ -7,9 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../store/store";
 import { setActive } from "../store/userSlice";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Logout } from "../services/Logout";
 
 const Navbar = () => {
-  const { userData, active } = useSelector((state: IRootState) => state.user);
+  const { userData, active, isLoggedIn } = useSelector(
+    (state: IRootState) => state.user
+  );
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [screenSize, setScreenSize] = useState(-1);
   const [mod1, setMod1] = useState(false);
@@ -41,10 +46,17 @@ const Navbar = () => {
                   className="eachitem relative text-[#09dd6d] flex flex-col gap-2 justify-between w-full "
                   onClick={(e) => {
                     e.preventDefault();
+                    if (n.id === 1 && !isLoggedIn) {
+                      navigate("/login");
+                    }
                     if (mod2 === -1) {
-                      setMod2(n.id);
+                      if ((n.id === 1 && isLoggedIn) || n.id !== 1) {
+                        setMod2(n.id);
+                      }
                     } else if (mod2 !== -1 && mod2 !== n.id) {
-                      setMod2(n.id);
+                      if ((n.id === 1 && isLoggedIn) || n.id !== 1) {
+                        setMod2(n.id);
+                      }
                     } else {
                       setMod2(-1);
                     }
@@ -53,30 +65,43 @@ const Navbar = () => {
                 >
                   <div className="input p-1 hover:bg-[#09dd6d] hover:text-black rounded-xl cursor-pointer">
                     {n.id === 1 ? (
-                      <div className="flex gap-2 items-center">
-                        <div className="img w-[1.5rem] h-[1.5rem] rounded-full bg-white flex items-center justify-center">
-                          <img
-                            src={userData.img}
-                            alt=""
-                            className="w-[1.5rem]"
-                          />
+                      isLoggedIn ? (
+                        <div className="flex gap-2 items-center">
+                          <div className="img w-[1.5rem] h-[1.5rem] rounded-full bg-white flex items-center justify-center">
+                            <img
+                              src={userData.img}
+                              alt=""
+                              className="w-[1.5rem]"
+                            />
+                          </div>
+                          <h1>
+                            {userData.name &&
+                              userData.name !== "" &&
+                              userData.name.split(" ")[0]}
+                          </h1>
                         </div>
-                        <h1>{userData.name && userData.name.split(" ")[0]}</h1>
-                      </div>
+                      ) : (
+                        <div className="flex items-center">
+                          <button className="button-var-1">Login</button>
+                        </div>
+                      )
                     ) : (
                       <h1 className="">{n.name}</h1>
                     )}
-
-                    {mod2 !== n.id ? (
-                      <KeyboardArrowDownIcon
-                        fontSize={iconSize}
-                        className="text-white hidden absolute top-[0.4rem] right-[0.2rem]"
-                      />
-                    ) : (
-                      <KeyboardArrowUpIcon
-                        fontSize={iconSize}
-                        className="text-white hidden absolute top-[0.4rem] right-[0.2rem]"
-                      />
+                    {((n.id === 1 && isLoggedIn) || n.id !== 1) && (
+                      <div className="modal">
+                        {mod2 !== n.id ? (
+                          <KeyboardArrowDownIcon
+                            fontSize={iconSize}
+                            className="text-white absolute top-[0.4rem] right-[0.2rem]"
+                          />
+                        ) : (
+                          <KeyboardArrowUpIcon
+                            fontSize={iconSize}
+                            className="text-white absolute top-[0.4rem] right-[0.2rem]"
+                          />
+                        )}
+                      </div>
                     )}
                   </div>
 
@@ -84,7 +109,16 @@ const Navbar = () => {
                     <div className="fields flex flex-col p-2 gap-4 bg-[#111111] rounded-xl">
                       {n.fields.map((f) => {
                         return (
-                          <div className="eachsub cursor-pointer" key={f.id}>
+                          <div
+                            className="eachsub cursor-pointer"
+                            key={f.id}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              if (n.id === 1 && f.id === 4) {
+                                Logout(dispatch, navigate);
+                              }
+                            }}
+                          >
                             {f.name}
                           </div>
                         );
@@ -146,7 +180,10 @@ const Navbar = () => {
                     <div className="fields flex flex-col p-2 gap-5 bg-[#111111] rounded-xl">
                       {n.fields.map((f) => {
                         return (
-                          <div className="eachsub cursor-pointer p-2 hover:bg-[#09dd6d] rounded-xl hover:text-black transition-all ease-in duration-150" key={f.id}>
+                          <div
+                            className="eachsub cursor-pointer p-2 hover:bg-[#09dd6d] rounded-xl hover:text-black transition-all ease-in duration-150"
+                            key={f.id}
+                          >
                             {f.name}
                           </div>
                         );
@@ -161,12 +198,27 @@ const Navbar = () => {
         })}
       </div>
       <div className="userdetails hidden sm:flex items-center">
-        <div className="flex gap-2 items-center">
-          <div className="img w-[1rem] h-[1rem] rounded-full bg-white flex items-center justify-center">
-            <img src={userData.img} alt="" className="w-[1rem]" />
+        {isLoggedIn ? (
+          <div className="flex gap-2 items-center">
+            <div className="img w-[1rem] h-[1rem] rounded-full bg-white flex items-center justify-center">
+              <img
+                src={userData.img && userData.img}
+                alt=""
+                className="w-[1rem]"
+              />
+            </div>
+            <span className="text-[0.85rem]">
+              {userData.name && userData.name.split(" ")[0]}
+            </span>
           </div>
-          <span className="text-[0.85rem]">{userData.name.split(" ")[0]}</span>
-        </div>
+        ) : (
+          <div className="button">
+            <button className="button-var-1" onClick={(e)=>{
+              e.preventDefault();
+              navigate("/login");
+            }}>Login</button>
+          </div>
+        )}
       </div>
     </div>
   );

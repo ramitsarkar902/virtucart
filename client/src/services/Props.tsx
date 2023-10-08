@@ -22,3 +22,11 @@ export interface BestSellingProduct {
   brand:string;
   thumbnail:string;
 }
+
+export interface NewlyLauncedProducts {
+  _id:string;
+  title:string;
+  description:string;
+  brand:string;
+  thumbnail:string;
+}

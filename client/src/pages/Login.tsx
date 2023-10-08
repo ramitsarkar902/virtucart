@@ -46,42 +46,43 @@ const Login = () => {
       dispatch(setIsLoggedIn(true));
       navigate("/");
       toast.success("Successfully Logged In");
+      dispatch(setIsLoggedIn(true));
     } else {
       toast.error(res);
     }
   };
 
   return (
-    <div className="w-full h-[100vh] flex flex-col items-center justify-center relative">
-      <div className="wrapper w-[95%] mx-auto rounded-3xl flex flex-col gap-10">
-        <div className="title w-full flex items-center justify-between">
-          <h1 className="text-[1.5rem] font-[500]">
+    <div className="w-full h-[100vh] flex flex-col items-center justify-center relative login">
+      <div className="wrapper w-[95%] mx-auto rounded-3xl flex flex-col gap-10 h-[100vh] lg:justify-evenly">
+        <div className="title w-full flex items-center justify-between lg:w-[50%] mx-auto">
+          <h1 className="text-[1.5rem] lg:text-[2rem] font-[500]">
             Virtu<span>Cart</span>
           </h1>
-          <h1 className="font-[600] text-[1.5rem]">
+          <h1 className="font-[600] text-[1.5rem] lg:text-[2rem]">
             Log<span className="">in</span>{" "}
           </h1>
         </div>
-        <div className="form flex flex-col p-3 rounded-3xl border border-[#393939] gap-8">
+        <div className="form flex flex-col p-3 rounded-3xl border border-[#393939] gap-8 sm:w-[60%] lg:w-[50%] mx-auto bg-[#191919] bg-opacity-40">
           <div className="input1 flex flex-col gap-3">
-            <label htmlFor="">
+            <label htmlFor="" className="lg:text-[1.5rem]">
               Enter your <span>Email Id</span>
             </label>
             <input
               type="text"
-              className="bg-transparent p-2 rounded-xl border border-[#393939] focus:ring-0 focus:outline-none"
+              className="bg-transparent lg:text-[1.2rem] lg:placeholder:text-[1.2rem] p-2 rounded-xl border border-[#393939] focus:ring-0 focus:outline-none"
               placeholder="Email Id"
               onChange={(e) => handleChange(e, 1)}
             />
           </div>
           <div className="input1 flex flex-col gap-3">
-            <label htmlFor="">
+            <label htmlFor="" className="lg:text-[1.5rem]">
               Enter your <span>Password</span>
             </label>
             <div className="input relative">
               <input
                 type={inpType}
-                className="bg-transparent w-full p-2 rounded-xl border border-[#393939] focus:ring-0 focus:outline-none"
+                className="bg-transparent lg:text-[1.2rem] lg:placeholder:text-[1.2rem] w-full p-2 rounded-xl border border-[#393939] focus:ring-0 focus:outline-none"
                 placeholder="Password"
                 onChange={(e) => handleChange(e, 2)}
               />
@@ -116,7 +117,7 @@ const Login = () => {
           </button>
         </div>
         <div className="navigate flex flex-col gap-1 justify-center items-center">
-          <h1 className="text-[0.75rem]">
+          <h1 className="text-[0.75rem] lg:text-[1.2rem] xl:text-[1.3rem]">
             Don't have an account?{" "}
             <span
               className="cursor-pointer"
