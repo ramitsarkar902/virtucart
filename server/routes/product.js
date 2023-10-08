@@ -15,11 +15,11 @@ const router = express.Router();
 
 router.delete("/:id", verifyToken, deleteProduct);
 
-router.get("/:id", verifyToken, geta);
+router.get("/:id", geta);
 
-router.get("/category/:id", verifyToken, getProductByCategory);
+router.get("/category/:id", getProductByCategory);
 
-router.get("/all/products", verifyToken, getall);
+router.get("/all/products", getall);
 
 router.post("/", create);
 
@@ -27,6 +27,6 @@ router.get("/best/product", getBestProduct);
 
 router.get("/new/products", getNewProducts);
 
-router.post("/sell/:id", productSold);
+router.post("/sell/:id",verifyToken, productSold);
 
 export default router;
