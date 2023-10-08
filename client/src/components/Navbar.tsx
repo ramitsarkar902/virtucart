@@ -199,24 +199,62 @@ const Navbar = () => {
       </div>
       <div className="userdetails hidden sm:flex items-center">
         {isLoggedIn ? (
-          <div className="flex gap-2 items-center">
-            <div className="img w-[1rem] h-[1rem] rounded-full bg-white flex items-center justify-center">
+          <div
+            className="flex gap-2 items-center relative cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              if (mod2 === 1) {
+                setMod2(-1);
+              }
+              else{
+                setMod2(1);
+              }
+            }}
+          >
+            <div className="img w-[1rem] h-[1rem] lg:w-[1.3rem] lg:h-[1.3rem] rounded-full bg-white flex items-center justify-center">
               <img
                 src={userData.img && userData.img}
                 alt=""
-                className="w-[1rem]"
+                className="w-[1rem] lg:w-[1.3rem]"
               />
             </div>
-            <span className="text-[0.85rem]">
+            <span className="text-[0.85rem] lg:text-[1rem]">
               {userData.name && userData.name.split(" ")[0]}
             </span>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: mod2 === 1 ? 1 : 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.75 }}
+              className="modal absolute top-8 w-[10vw] max-w-[10vw] whitespace-nowrap -left-[8rem]"
+            >
+              {mod2 === 1 && (
+                <div className="fields flex flex-col p-2 gap-5 bg-[#111111] rounded-xl">
+                  {NavItems[0].fields.map((f) => {
+                    return (
+                      <div
+                        className="eachsub cursor-pointer text-[#99dd6d] p-2 hover:bg-[#09dd6d] rounded-xl hover:text-black transition-all ease-in duration-150"
+                        key={f.id}
+                      >
+                        {f.name}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </motion.div>
           </div>
         ) : (
           <div className="button">
-            <button className="button-var-1" onClick={(e)=>{
-              e.preventDefault();
-              navigate("/login");
-            }}>Login</button>
+            <button
+              className="button-var-1"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/login");
+              }}
+            >
+              Login
+            </button>
           </div>
         )}
       </div>
