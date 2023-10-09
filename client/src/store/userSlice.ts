@@ -3,21 +3,23 @@ import { UserDets } from "../services/Props";
 
 interface InitialProp {
   isLoggedIn: boolean;
-  active:number;
+  isLoading: boolean;
+  active: number;
   userData: UserDets;
-  token:string;
+  token: string;
 }
 
 const initialState: InitialProp = {
   isLoggedIn: false,
-  active:2,
+  isLoading: false,
+  active: 2,
   userData: {
     _id: "",
     name: "",
     email: "",
     img: "",
   },
-  token:"",
+  token: "",
 };
 
 export const userSlice = createSlice({
@@ -26,6 +28,9 @@ export const userSlice = createSlice({
   reducers: {
     setIsLoggedIn: (state, action) => {
       state.isLoggedIn = action.payload;
+    },
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
     },
     setActive: (state, action) => {
       state.active = action.payload;
@@ -39,6 +44,12 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setIsLoggedIn,setActive, storeUserData ,storeToken} = userSlice.actions;
+export const {
+  setIsLoggedIn,
+  setIsLoading,
+  setActive,
+  storeUserData,
+  storeToken,
+} = userSlice.actions;
 
 export default userSlice.reducer;

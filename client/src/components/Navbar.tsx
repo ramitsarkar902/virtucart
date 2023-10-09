@@ -11,38 +11,37 @@ import { useNavigate } from "react-router-dom";
 import { Logout } from "../services/Logout";
 
 const Navbar = () => {
-  
   const { userData, active, isLoggedIn } = useSelector(
     (state: IRootState) => state.user
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isAtTop, setIsAtTop] = useState(true);
   const [screenSize, setScreenSize] = useState(-1);
-  const [scrolling, setScrolling] = useState(false);
   const [mod1, setMod1] = useState(false);
   const [mod2, setMod2] = useState(-1);
   useEffect(() => {
     setScreenSize(window.innerWidth);
-  }, []);
-  useEffect(() => {
+
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setScrolling(true);
-      } else {
-        setScrolling(false);
-      }
+      const scrollY = window.scrollY;
+
+      setIsAtTop(scrollY === 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const iconSize = screenSize >= 640 ? "medium" : "small";
   return (
     <div
-      className={`fixed left-1/2 -translate-x-1/2 p-3 w-[95%] mx-auto flex items-center justify-between rounded-2xl h-[8vh] mt-${scrolling ? '0' : '[2vh]'} mx-auto bg-[#1f1f1f]`}
+      className={`fixed left-1/2 -translate-x-1/2 p-3  mx-auto ${
+        isAtTop ? "mt-[2vh] w-[95%] rounded-2xl" : "mt-0 w-full rounded-0"
+      } flex items-center justify-between  h-[8vh] mx-auto bg-[#1f1f1f] transition-all ease-out duration-150`}
     >
       <h1 className="text-[0.95rem] font-[500]">
         Virtu<span>Cart</span>
