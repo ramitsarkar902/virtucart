@@ -11,20 +11,39 @@ import { useNavigate } from "react-router-dom";
 import { Logout } from "../services/Logout";
 
 const Navbar = () => {
+  
   const { userData, active, isLoggedIn } = useSelector(
     (state: IRootState) => state.user
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [screenSize, setScreenSize] = useState(-1);
+  const [scrolling, setScrolling] = useState(false);
   const [mod1, setMod1] = useState(false);
   const [mod2, setMod2] = useState(-1);
   useEffect(() => {
     setScreenSize(window.innerWidth);
   }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   const iconSize = screenSize >= 640 ? "medium" : "small";
   return (
-    <div className="fixed left-1/2 -translate-x-1/2 p-3 w-[95%] mx-auto flex items-center justify-between rounded-2xl h-[8vh] mt-[2vh] mx-auto bg-[#1f1f1f]">
+    <div
+      className={`fixed left-1/2 -translate-x-1/2 p-3 w-[95%] mx-auto flex items-center justify-between rounded-2xl h-[8vh] mt-${scrolling ? '0' : '[2vh]'} mx-auto bg-[#1f1f1f]`}
+    >
       <h1 className="text-[0.95rem] font-[500]">
         Virtu<span>Cart</span>
       </h1>
