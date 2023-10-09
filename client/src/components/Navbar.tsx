@@ -1,14 +1,14 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import { useEffect, useState } from "react";
-import { NavItems } from "../services/Items";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import MenuIcon from "@mui/icons-material/Menu";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { NavItems } from "../services/Items";
+import { Logout } from "../services/Logout";
 import { IRootState } from "../store/store";
 import { setActive } from "../store/userSlice";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { Logout } from "../services/Logout";
 
 const Navbar = () => {
   const { userData, active, isLoggedIn } = useSelector(
@@ -46,7 +46,7 @@ const Navbar = () => {
     <div
       className={`fixed left-1/2 -translate-x-1/2 p-3  mx-auto ${
         isAtTop ? "mt-[2vh] w-[95%] rounded-2xl" : "mt-0 w-full rounded-0"
-      } flex items-center justify-between  h-[8vh] mx-auto bg-[#1f1f1f] transition-all ease-out duration-150`}
+      } flex items-center justify-between  h-[8vh] mx-auto bg-[#1f1f1f] transition-all ease-out duration-150 z-30`}
     >
       <h1 className="text-[0.95rem] font-[500]">
         Virtu<span>Cart</span>
