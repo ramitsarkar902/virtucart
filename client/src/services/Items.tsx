@@ -25,7 +25,7 @@ export const NavItems = [
     id: 2,
     name: "Home",
     fields: [
-      {
+      /* {
         id: 1,
         name: "Best Selling Products",
       },
@@ -36,7 +36,7 @@ export const NavItems = [
       {
         id: 3,
         name: "New Launches",
-      },
+      }, */
     ],
   },
   {

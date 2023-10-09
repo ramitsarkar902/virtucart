@@ -45,3 +45,29 @@ export interface ProductsProp {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface ServicesProp {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  rating: number;
+  providedBy: string;
+  thumbnail: string;
+}
+
+export interface BestSellingService {
+  _id: string;
+  title: string;
+  description: string;
+  providedBy: string;
+  thumbnail: string;
+}
+
+export interface NewlyLauncedServices {
+  _id: string;
+  title: string;
+  description: string;
+  providedBy: string;
+  thumbnail: string;
+}

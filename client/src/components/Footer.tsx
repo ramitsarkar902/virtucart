@@ -2,14 +2,16 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-white py-12">
-      <div className="container mx-auto">
+    <footer className="bg-gray-800 text-white py-12 mt-[10rem] flex flex-col w-full">
+      <div className="mx-auto flex justify-between items-center w-[90%]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="col-span-2 lg:col-span-1">
             <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-            <p>Email: info@example.com</p>
-            <p>Phone: (123) 456-7890</p>
-            <p>Address: 123 Main Street, City, State, 12345</p>
+            <p>Email: ramitsarkar902@gmail.com</p>
+            <p>Phone: +(91) 9434973413</p>
+            <p>
+              Address: Manipal University Jaipur, Bagru-303007, Rajasthan, India
+            </p>
           </div>
           <div>
             <h2 className="text-2xl font-bold mb-4">Explore</h2>
@@ -71,9 +73,9 @@ const Footer: React.FC = () => {
             </ul>
           </div>
         </div>
-        <div className="mt-8 text-center">
-          <p>&copy; 2023 Your Company. All Rights Reserved.</p>
-        </div>
+      </div>
+      <div className="mt-8 text-center">
+        <p>&copy; 2023 VirtuCart. All Rights Reserved.</p>
       </div>
     </footer>
   );

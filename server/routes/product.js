@@ -5,6 +5,8 @@ import {
   getBestProduct,
   getNewProducts,
   getProductByCategory,
+  getProductByPrice,
+  getProductByRating,
   geta,
   getall,
   productSold,
@@ -19,6 +21,10 @@ router.get("/:id", geta);
 
 router.get("/category/:id", getProductByCategory);
 
+router.get("/price/product", getProductByPrice);
+
+router.get("/rating/product", getProductByRating);
+
 router.get("/all/products", getall);
 
 router.post("/", create);
@@ -27,6 +33,6 @@ router.get("/best/product", getBestProduct);
 
 router.get("/new/products", getNewProducts);
 
-router.post("/sell/:id",verifyToken, productSold);
+router.post("/sell/:id", verifyToken, productSold);
 
 export default router;

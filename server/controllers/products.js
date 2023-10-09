@@ -50,6 +50,30 @@ export const getProductByCategory = async (req, res, next) => {
   }
 };
 
+export const getProductByPrice = async (req, res, next) => {
+  try {
+    const { upperLimit, lowerLimit } = req.body;
+    const r = await Product.find({
+      price: { $gte: lowerLimit, $lte: upperLimit },
+    });
+    res.status(200).json(r);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getProductByRating = async (req, res, next) => {
+  try {
+    const { upperLimit, lowerLimit } = req.body;
+    const r = await Product.find({
+      rating: { $gte: lowerLimit, $lte: upperLimit },
+    });
+    res.status(200).json(r);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getBestProduct = async (req, res, next) => {
   try {
     const a = await Product.aggregate([

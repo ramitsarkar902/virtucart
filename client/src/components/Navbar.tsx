@@ -40,14 +40,20 @@ const Navbar = () => {
 
   const handleClick = (e: any, id1: number, id2: string) => {
     e.preventDefault();
+    console.log(id1);
+    
     if (id1 === 3) {
       navigate(`/products/${id2.toLowerCase()}`);
     }
+    else if (id1 === 4) {
+      navigate(`/services`);
+    }
+
   };
   return (
     <div
       className={`fixed left-1/2 -translate-x-1/2 p-3  mx-auto ${
-        isAtTop ? "mt-[2vh] w-[95%] rounded-2xl" : "mt-0 w-full rounded-0"
+        isAtTop ? "mt-[2vh] w-[95%] rounded-2xl border-b  border-[#1f1f1f]" : "mt-0 w-full rounded-0 border-b border-[#09dd6d] "
       } flex items-center justify-between  h-[8vh] mx-auto bg-[#1f1f1f] transition-all ease-out duration-150 z-30`}
     >
       <h1 className="text-[0.95rem] font-[500]">
@@ -168,6 +174,12 @@ const Navbar = () => {
                 key={n.id}
                 onClick={(e) => {
                   e.preventDefault();
+                  if(n.id===4){
+                    navigate("/services");
+                  }
+                  if(n.id===2){
+                    navigate("/");
+                  }
                   if (mod2 === -1) {
                     setMod2(n.id);
                   } else if (mod2 !== -1 && mod2 !== n.id) {

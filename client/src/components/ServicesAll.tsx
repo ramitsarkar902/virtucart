@@ -3,7 +3,6 @@ import { Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { IRootState } from "../store/store";
 
 const useStyles = makeStyles({
@@ -12,20 +11,19 @@ const useStyles = makeStyles({
   },
 });
 
-const ProductsAll = () => {
+const ServicesAll = () => {
   const classes = useStyles();
-  const { id } = useParams();
-  const { products } = useSelector((state: IRootState) => state.product);
+  const { services } = useSelector((state: IRootState) => state.service);
   return (
     <div className="min-h-[100vh] flex flex-col gap-5 mt-[12vh]">
       <div className="title w-[95%] mx-auto">
         <h1 className="text-[2rem] sm:text-[3rem] font-[600]">
-          Our <span>{id}</span>
+          Our <span>Services</span>
         </h1>
       </div>
       <div className="wrapper w-[95%] mx-auto flex flex-col sm:flex-row sm:flex-wrap sm:justify-between lg:justify-center gap-5 xl:gap-16">
-        {products &&
-          products.map((p) => {
+        {services &&
+          services.map((p) => {
             return (
               <motion.div
                 whileHover={{ scale: "1.05" }}
@@ -38,7 +36,7 @@ const ProductsAll = () => {
                   <div className="left flex flex-col gap-3">
                     <h1 className="text-[1.4rem] font-[500]">{p.title}</h1>
                     <h1 className="text-[0.8rem]">
-                      <span>{p.brand}</span>
+                      <span>{p.providedBy}</span>
                     </h1>
                     <h1 className="text-[0.7rem] w-[60%]">{p.description}</h1>
                     <Rating
@@ -70,4 +68,4 @@ const ProductsAll = () => {
   );
 };
 
-export default ProductsAll;
+export default ServicesAll;

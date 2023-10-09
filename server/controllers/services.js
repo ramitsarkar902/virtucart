@@ -39,12 +39,25 @@ export const getall = async (req, res, next) => {
   }
 };
 
-export const getServiceByCategory = async (req, res, next) => {
+export const getServiceByPrice = async (req, res, next) => {
   try {
-    const a = await Service.find({
-      category: req.params.id,
+    const { upperLimit, lowerLimit } = req.body;
+    const r = await Service.find({
+      price: { $gte: lowerLimit, $lte: upperLimit },
     });
-    res.status(200).json(a);
+    res.status(200).json(r);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getServiceByRating = async (req, res, next) => {
+  try {
+    const { upperLimit, lowerLimit } = req.body;
+    const r = await Service.find({
+      rating: { $gte: lowerLimit, $lte: upperLimit },
+    });
+    res.status(200).json(r);
   } catch (error) {
     next(error);
   }
@@ -89,7 +102,7 @@ export const ServiceSold = async (req, res, next) => {
     });
     await User.findByIdAndUpdate(req.body.userId, {
       $push: {
-        ServiceOrders: req.params.id,
+        serviceOrders: req.params.id,
       },
     });
     res.status(200).json("Service confirmed!");

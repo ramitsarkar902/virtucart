@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { LoginProp, SignupProp } from "../services/Props";
+import { LoginProp } from "../services/Props";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import { LoginApi, SignupApi } from "../apis/api";
+import { LoginApi } from "../apis/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";

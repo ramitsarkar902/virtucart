@@ -14,9 +14,7 @@ const Products = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (id) {
-      console.log("Entering products");
-      
+    if (id) {    
       const fetchProducts = async () => {
         dispatch(setIsLoading(true));
         const res = await getProductsByCategory(dispatch, id);
