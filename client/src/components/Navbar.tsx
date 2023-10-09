@@ -24,7 +24,7 @@ const Navbar = () => {
   }, []);
   const iconSize = screenSize >= 640 ? "medium" : "small";
   return (
-    <div className="fixed left-1/2 -translate-x-1/2 p-3 w-[95%] mx-auto flex items-center justify-between rounded-2xl h-[8vh] mt-[2vh] mx-auto bg-[#1f1f1f]">
+    <div className="fixed left-1/2 -translate-x-1/2 p-3 w-[95%] mx-auto flex items-center justify-between rounded-2xl h-[8vh] mt-[2vh] mx-auto bg-[#1f1f1f] z-30">
       <h1 className="text-[0.95rem] font-[500]">
         Virtu<span>Cart</span>
       </h1>
