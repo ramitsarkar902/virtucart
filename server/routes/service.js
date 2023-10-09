@@ -1,14 +1,15 @@
 import express from "express";
 import {
+  ServiceSold,
   create,
-  deleteServive,
-  getBestServive,
-  getNewServives,
-  getServiveByCategory,
+  deleteService,
+  getBestService,
+  getNewServices,
+  getServiceByPrice,
+  getServiceByRating,
   geta,
   getall,
-  serviveSold,
-} from "../controllers/products.js";
+} from "../controllers/services.js";
 import { verifyToken } from "../verifyToken.js";
 
 const router = express.Router();
@@ -17,16 +18,18 @@ router.delete("/:id", verifyToken, deleteService);
 
 router.get("/:id", geta);
 
-router.get("/category/:id", getServiceByCategory);
+router.get("/price/service", getServiceByPrice);
 
-router.get("/all/products", getall);
+router.get("/rating/service", getServiceByRating);
+
+router.get("/all/services", getall);
 
 router.post("/", create);
 
-router.get("/best/product", getBestService);
+router.get("/best/service", getBestService);
 
-router.get("/new/products", getNewServices);
+router.get("/new/services", getNewServices);
 
-router.post("/sell/:id", verifyToken, serviceSold);
+router.post("/sell/:id", verifyToken, ServiceSold);
 
 export default router;

@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 
 import authRoutes from "./routes/auth.js";
 import productRoutes from "./routes/product.js";
+import serviceRoutes from "./routes/service.js";
 import userRoutes from "./routes/user.js";
 /*
 import eventRoutes from "./routes/event.js";
@@ -47,6 +48,7 @@ app.use((err, req, res, next) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/services", serviceRoutes);
 /* 
 app.use("/api/event", eventRoutes);
 app.use("/api/product", productRoutes);
