@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNewlyLaunchedProd } from "../apis/api";
 import { ToastContainer, toast } from "react-toastify";
 import { IRootState } from "../store/store";
+import { setIsLoading } from "../store/userSlice";
 
 const NewLaunched = () => {
   const { newlyLaunchedProducts } = useSelector(
@@ -11,9 +12,13 @@ const NewLaunched = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchNewlyLaunchedProd = async () => {
+      dispatch(setIsLoading(true));
       const res = await getNewlyLaunchedProd(dispatch);
       if (typeof res === "string") {
         toast.warn(res);
+        dispatch(setIsLoading(true));
+      } else {
+        dispatch(setIsLoading(false));
       }
     };
     fetchNewlyLaunchedProd();
@@ -36,8 +41,8 @@ const NewLaunched = () => {
                       ? "bg-[#fefefe] text-[#191919]"
                       : "text-white"
                   }
-                  ${(index===2) && "sm:bg-[#fefefe] sm:text-[#191919]"}
-                  ${(index===3) && "sm:bg-[#191919] sm:text-[#fefefe]"}
+                  ${index === 2 && "sm:bg-[#fefefe] sm:text-[#191919]"}
+                  ${index === 3 && "sm:bg-[#191919] sm:text-[#fefefe]"}
              h-[75vh]`}
                   key={n._id}
                 >
@@ -62,6 +67,7 @@ const NewLaunched = () => {
                       src={n.thumbnail}
                       alt=""
                       className={`${index === 0 && "w-[20rem]"}`}
+                      loading="lazy"
                     />
                   </div>
                 </div>

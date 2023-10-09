@@ -1,14 +1,14 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import { useEffect, useState } from "react";
-import { NavItems } from "../services/Items";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import MenuIcon from "@mui/icons-material/Menu";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { NavItems } from "../services/Items";
+import { Logout } from "../services/Logout";
 import { IRootState } from "../store/store";
 import { setActive } from "../store/userSlice";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { Logout } from "../services/Logout";
 
 const Navbar = () => {
   const { userData, active, isLoggedIn } = useSelector(
@@ -16,15 +16,33 @@ const Navbar = () => {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isAtTop, setIsAtTop] = useState(true);
   const [screenSize, setScreenSize] = useState(-1);
   const [mod1, setMod1] = useState(false);
   const [mod2, setMod2] = useState(-1);
   useEffect(() => {
     setScreenSize(window.innerWidth);
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      setIsAtTop(scrollY === 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
   const iconSize = screenSize >= 640 ? "medium" : "small";
   return (
-    <div className="fixed left-1/2 -translate-x-1/2 p-3 w-[95%] mx-auto flex items-center justify-between rounded-2xl h-[8vh] mt-[2vh] mx-auto bg-[#1f1f1f] z-30">
+    <div
+      className={`fixed left-1/2 -translate-x-1/2 p-3  mx-auto ${
+        isAtTop ? "mt-[2vh] w-[95%] rounded-2xl" : "mt-0 w-full rounded-0"
+      } flex items-center justify-between  h-[8vh] mx-auto bg-[#1f1f1f] transition-all ease-out duration-150 z-30`}
+    >
       <h1 className="text-[0.95rem] font-[500]">
         Virtu<span>Cart</span>
       </h1>
