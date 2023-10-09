@@ -1,11 +1,15 @@
 import axios from "axios";
-import { api_url } from "./helper";
 import { LoginProp, SignupProp } from "../services/Props";
-import { storeToken, storeUserData } from "../store/userSlice";
 import {
   storeBestSellingProduct,
   storeNewlyLaunchedProducts,
 } from "../store/productsSlice";
+import {
+  storeBestSellingService,
+  storeNewlyLaunchedServices,
+} from "../store/serviceSlice";
+import { storeToken, storeUserData } from "../store/userSlice";
+import { api_url } from "./helper";
 
 export const SignupApi = async (formDets: SignupProp) => {
   try {
@@ -45,6 +49,26 @@ export const getNewlyLaunchedProd = async (dispatch: any) => {
   try {
     const res = await axios.get(`${api_url}/products/new/products`);
     dispatch(storeNewlyLaunchedProducts(res.data));
+    return res.status;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+
+export const getBestSellingService = async (dispatch: any) => {
+  try {
+    const res = await axios.get(`${api_url}/services/best/service`);
+    dispatch(storeBestSellingService(res.data));
+    return res.status;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+
+export const getNewlyLaunchedService = async (dispatch: any) => {
+  try {
+    const res = await axios.get(`${api_url}/services/new/services`);
+    dispatch(storeNewlyLaunchedServices(res.data));
     return res.status;
   } catch (error: any) {
     return error.response.data;

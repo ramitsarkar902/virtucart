@@ -1,7 +1,12 @@
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import HeroProd from "../components/HeroProd";
+import HeroService from "../components/HeroService";
 import Navbar from "../components/Navbar";
-import NewLaunched from "../components/NewLaunched";
+import {
+  default as NewLaunched,
+  default as NewLaunchedProduct,
+} from "../components/NewLaunchedProduct";
+import NewLaunchedService from "../components/NewLaunchedService";
 
 const Home = () => {
   return (
@@ -36,11 +41,12 @@ const Home = () => {
               color: "white",
             }}
           >
-            <HeroProd />
+            <HeroService />
           </ParallaxLayer>
         </Parallax>
       </div>
-      <NewLaunched />
+      <NewLaunchedProduct />
+      <NewLaunchedService />
     </div>
   );
 };
