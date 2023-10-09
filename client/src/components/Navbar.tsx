@@ -205,8 +205,7 @@ const Navbar = () => {
               e.preventDefault();
               if (mod2 === 1) {
                 setMod2(-1);
-              }
-              else{
+              } else {
                 setMod2(1);
               }
             }}
@@ -218,9 +217,14 @@ const Navbar = () => {
                 className="w-[1rem] lg:w-[1.3rem]"
               />
             </div>
-            <span className="text-[0.85rem] lg:text-[1rem]">
-              {userData.name && userData.name.split(" ")[0]}
+            <span className="text-[0.85rem] lg:text-[1rem] flex items-center">
+              {userData.name && userData.name.split(" ")[0]}{" "}
+              <KeyboardArrowDownIcon
+                fontSize={iconSize}
+                className="text-white"
+              />
             </span>
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: mod2 === 1 ? 1 : 0 }}
@@ -235,6 +239,10 @@ const Navbar = () => {
                       <div
                         className="eachsub cursor-pointer text-[#99dd6d] p-2 hover:bg-[#09dd6d] rounded-xl hover:text-black transition-all ease-in duration-150"
                         key={f.id}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          Logout(dispatch, navigate);
+                        }}
                       >
                         {f.name}
                       </div>

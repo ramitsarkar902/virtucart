@@ -23,6 +23,7 @@
 }
 span {
   color: #09dd6d;
+  cursor: pointer;
 }
 .button-var-1 {
   padding: 5px 8px;
