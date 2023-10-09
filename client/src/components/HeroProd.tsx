@@ -44,7 +44,11 @@ const HeroProd = () => {
         </div>
         <div className="bottom">
           <img
-            src={bestSellingProduct && bestSellingProduct[0] && bestSellingProduct[0].thumbnail}
+            src={
+              bestSellingProduct &&
+              bestSellingProduct[0] &&
+              bestSellingProduct[0].thumbnail
+            }
             alt=""
             sizes=""
             className="bg-[#191919]"
@@ -52,6 +56,12 @@ const HeroProd = () => {
         </div>
       </div>
       <ToastContainer theme="dark" />
+      {/* <iframe
+        className="w-full h-full"
+        src="https://my.spline.design/iphone14procopy-d913a52c8fbbc39d79d45caab7ed9305/"
+        width="100%"
+        height="100%"
+      ></iframe> */}
     </div>
   );
 };

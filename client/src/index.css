@@ -35,7 +35,37 @@ span {
   border: 1px solid #09dd6d;
 }
 
-.signup,.login {
-  background: rgb(25,25,25);
-  background: linear-gradient(163deg, rgba(25,25,25,1) 35%, rgba(9,221,109,1) 200%);
+.signup,
+.login {
+  background: rgb(25, 25, 25);
+  background: linear-gradient(
+    163deg,
+    rgba(25, 25, 25, 1) 35%,
+    rgba(9, 221, 109, 1) 200%
+  );
+}
+
+.loader-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #3d5af1 transparent #3d5af1 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
