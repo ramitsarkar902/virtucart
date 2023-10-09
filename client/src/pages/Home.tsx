@@ -1,6 +1,6 @@
-import HeroProd from "../components/HeroProd"
-import Navbar from "../components/Navbar"
-import NewLaunched from "../components/NewLaunched"
+import HeroProd from "../components/HeroProd";
+import Navbar from "../components/Navbar";
+import NewLaunched from "../components/NewLaunched";
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <HeroProd />
       <NewLaunched />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
