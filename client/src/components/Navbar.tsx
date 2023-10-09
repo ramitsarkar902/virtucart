@@ -37,6 +37,11 @@ const Navbar = () => {
   }, []);
 
   const iconSize = screenSize >= 640 ? "medium" : "small";
+
+  const handleClick = (e: any, id1: number, id2: number) => {
+    e.preventDefault();
+    console.log(id1, id2);
+  };
   return (
     <div
       className={`fixed left-1/2 -translate-x-1/2 p-3  mx-auto ${
@@ -201,6 +206,7 @@ const Navbar = () => {
                           <div
                             className="eachsub cursor-pointer p-2 hover:bg-[#09dd6d] rounded-xl hover:text-black transition-all ease-in duration-150"
                             key={f.id}
+                            onClick={(e) => handleClick(e, n.id, f.id)}
                           >
                             {f.name}
                           </div>
@@ -259,7 +265,9 @@ const Navbar = () => {
                         key={f.id}
                         onClick={(e) => {
                           e.preventDefault();
-                          Logout(dispatch, navigate);
+                          if (f.id === 4) {
+                            Logout(dispatch, navigate);
+                          }
                         }}
                       >
                         {f.name}
