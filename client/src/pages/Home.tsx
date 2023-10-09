@@ -2,10 +2,12 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import HeroProd from "../components/HeroProd";
 import Navbar from "../components/Navbar";
 import NewLaunched from "../components/NewLaunched";
+import ScrollToTop from "../components/ScrollToTop";
 
 const Home = () => {
   return (
     <div className="w-full">
+      <ScrollToTop />
       <Navbar />
       <div className="w-full h-[100vh]">
         <Parallax pages={2} style={{ top: "0", left: "0" }}>

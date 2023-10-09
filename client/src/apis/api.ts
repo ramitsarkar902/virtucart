@@ -5,6 +5,7 @@ import { storeToken, storeUserData } from "../store/userSlice";
 import {
   storeBestSellingProduct,
   storeNewlyLaunchedProducts,
+  storeProducts,
 } from "../store/productsSlice";
 
 export const SignupApi = async (formDets: SignupProp) => {
@@ -50,3 +51,12 @@ export const getNewlyLaunchedProd = async (dispatch: any) => {
     return error.response.data;
   }
 };
+
+export const getProductsByCategory = async(dispatch:any,category:string)=>{
+  try {
+    const res = await axios.get(`${api_url}/products/category/${category}`);
+    dispatch(storeProducts(res.data));
+  } catch (error:any) {
+    return error.response.data;
+  }
+}

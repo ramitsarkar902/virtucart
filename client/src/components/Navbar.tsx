@@ -38,9 +38,11 @@ const Navbar = () => {
 
   const iconSize = screenSize >= 640 ? "medium" : "small";
 
-  const handleClick = (e: any, id1: number, id2: number) => {
+  const handleClick = (e: any, id1: number, id2: string) => {
     e.preventDefault();
-    console.log(id1, id2);
+    if (id1 === 3) {
+      navigate(`/products/${id2.toLowerCase()}`);
+    }
   };
   return (
     <div
@@ -111,24 +113,25 @@ const Navbar = () => {
                     ) : (
                       <h1 className="">{n.name}</h1>
                     )}
-                    {((n.id === 1 && isLoggedIn) || n.id !== 1) && (
-                      <div className="modal">
-                        {mod2 !== n.id ? (
-                          <KeyboardArrowDownIcon
-                            fontSize={iconSize}
-                            className="text-white absolute top-[0.4rem] right-[0.2rem]"
-                          />
-                        ) : (
-                          <KeyboardArrowUpIcon
-                            fontSize={iconSize}
-                            className="text-white absolute top-[0.4rem] right-[0.2rem]"
-                          />
-                        )}
-                      </div>
-                    )}
+                    {((n.id === 1 && isLoggedIn) || n.id !== 1) &&
+                      n.fields.length > 0 && (
+                        <div className="modal">
+                          {mod2 !== n.id ? (
+                            <KeyboardArrowDownIcon
+                              fontSize={iconSize}
+                              className="text-white absolute top-[0.4rem] right-[0.2rem]"
+                            />
+                          ) : (
+                            <KeyboardArrowUpIcon
+                              fontSize={iconSize}
+                              className="text-white absolute top-[0.4rem] right-[0.2rem]"
+                            />
+                          )}
+                        </div>
+                      )}
                   </div>
 
-                  {mod2 === n.id && (
+                  {mod2 === n.id && n.fields.length > 0 && (
                     <div className="fields flex flex-col p-2 gap-4 bg-[#111111] rounded-xl">
                       {n.fields.map((f) => {
                         return (
@@ -139,6 +142,8 @@ const Navbar = () => {
                               e.preventDefault();
                               if (n.id === 1 && f.id === 4) {
                                 Logout(dispatch, navigate);
+                              } else {
+                                handleClick(e, n.id, f.name);
                               }
                             }}
                           >
@@ -181,17 +186,22 @@ const Navbar = () => {
                     } w-[20px] h-[2px] `}
                   ></div>
                 </h1>
-                {mod2 !== n.id ? (
-                  <KeyboardArrowDownIcon
-                    fontSize={iconSize}
-                    className="text-white"
-                  />
-                ) : (
-                  <KeyboardArrowUpIcon
-                    fontSize={iconSize}
-                    className="text-white"
-                  />
+                {n.fields.length > 0 && (
+                  <div>
+                    {mod2 !== n.id ? (
+                      <KeyboardArrowDownIcon
+                        fontSize={iconSize}
+                        className="text-white"
+                      />
+                    ) : (
+                      <KeyboardArrowUpIcon
+                        fontSize={iconSize}
+                        className="text-white"
+                      />
+                    )}
+                  </div>
                 )}
+
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: mod2 === n.id ? 1 : 0 }}
@@ -199,14 +209,14 @@ const Navbar = () => {
                   transition={{ duration: 0.75 }}
                   className="modal absolute top-8 w-fit whitespace-nowrap left-0"
                 >
-                  {mod2 === n.id && (
+                  {mod2 === n.id && n.fields.length > 0 && (
                     <div className="fields flex flex-col p-2 gap-5 bg-[#111111] rounded-xl">
                       {n.fields.map((f) => {
                         return (
                           <div
                             className="eachsub cursor-pointer p-2 hover:bg-[#09dd6d] rounded-xl hover:text-black transition-all ease-in duration-150"
                             key={f.id}
-                            onClick={(e) => handleClick(e, n.id, f.id)}
+                            onClick={(e) => handleClick(e, n.id, f.name)}
                           >
                             {f.name}
                           </div>

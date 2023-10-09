@@ -25,7 +25,7 @@ const HeroProd = () => {
     fetchBestProd();
   }, []);
   return (
-    <div className="min-h-[100vh] w-full flex flex-col justify-center items-center">
+    <div className="h-[100vh] w-full flex flex-col justify-center items-center">
       {isLoading ? (
         <Loader />
       ) : (
