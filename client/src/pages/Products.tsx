@@ -1,20 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductsByCategory } from "../apis/api";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { setIsLoading } from "../store/userSlice";
+import { setActive, setIsLoading } from "../store/userSlice";
 import { IRootState } from "../store/store";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import ProductsAll from "../components/ProductsAll";
 
 const Products = () => {
+  const [currentPath, setCurrentPath] = useState("");
   const { isLoading } = useSelector((state: IRootState) => state.user);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (id) {    
+    if (id) {
       const fetchProducts = async () => {
         dispatch(setIsLoading(true));
         const res = await getProductsByCategory(dispatch, id);
@@ -25,6 +26,15 @@ const Products = () => {
         }
       };
       fetchProducts();
+      const path = window.location.pathname;
+      setCurrentPath(path);
+      console.log(currentPath);
+      if (
+        currentPath !== "" &&
+        (currentPath === "/home" || currentPath === "/")
+      ) {
+        dispatch(setActive(3));
+      }
     }
   }, [id]);
 

@@ -40,20 +40,21 @@ const Navbar = () => {
 
   const handleClick = (e: any, id1: number, id2: string) => {
     e.preventDefault();
-    console.log(id1);
-    
+    if (id1 === 2) {
+      navigate("/");
+    }
     if (id1 === 3) {
       navigate(`/products/${id2.toLowerCase()}`);
-    }
-    else if (id1 === 4) {
+    } else if (id1 === 4) {
       navigate(`/services`);
     }
-
   };
   return (
     <div
       className={`fixed left-1/2 -translate-x-1/2 p-3  mx-auto ${
-        isAtTop ? "mt-[2vh] w-[95%] rounded-2xl border-b  border-[#1f1f1f]" : "mt-0 w-full rounded-0 border-b border-[#09dd6d] "
+        isAtTop
+          ? "mt-[2vh] w-[95%] rounded-2xl border-b  border-[#1f1f1f]"
+          : "mt-0 w-full rounded-0 border-b border-[#09dd6d] "
       } flex items-center justify-between  h-[8vh] mx-auto bg-[#1f1f1f] transition-all ease-out duration-150 z-30`}
     >
       <h1 className="text-[0.95rem] font-[500]">
@@ -74,11 +75,17 @@ const Navbar = () => {
             {NavItems.map((n) => {
               return (
                 <div
-                  className="eachitem relative text-[#09dd6d] flex flex-col gap-2 justify-between w-full "
+                  className="eachitem  relative text-[#09dd6d] flex flex-col gap-2 justify-between w-full "
                   onClick={(e) => {
                     e.preventDefault();
+                    console.log(n.id);
+
                     if (n.id === 1 && !isLoggedIn) {
                       navigate("/login");
+                    } else if (n.id === 2) {
+                      navigate("/");
+                    } else if (n.id === 4) {
+                      navigate(`/services`);
                     }
                     if (mod2 === -1) {
                       if ((n.id === 1 && isLoggedIn) || n.id !== 1) {
@@ -174,10 +181,10 @@ const Navbar = () => {
                 key={n.id}
                 onClick={(e) => {
                   e.preventDefault();
-                  if(n.id===4){
+                  if (n.id === 4) {
                     navigate("/services");
                   }
-                  if(n.id===2){
+                  if (n.id === 2) {
                     navigate("/");
                   }
                   if (mod2 === -1) {
@@ -187,7 +194,6 @@ const Navbar = () => {
                   } else {
                     setMod2(-1);
                   }
-                  dispatch(setActive(n.id));
                 }}
               >
                 <h1 className=" flex flex-col text-[0.85rem]">

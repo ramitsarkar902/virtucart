@@ -54,7 +54,7 @@ export const getProductByPrice = async (req, res, next) => {
   try {
     const { upperLimit, lowerLimit } = req.body;
     const r = await Product.find({
-      price: { $gte: lowerLimit, $lte: upperLimit },
+      discountedPrice: { $gte: lowerLimit, $lte: upperLimit },
     });
     res.status(200).json(r);
   } catch (error) {

@@ -2,9 +2,11 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { IRootState } from "../store/store";
+import React from "react";
+import { setSelectedProductId } from "../store/productsSlice";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -16,6 +18,13 @@ const ProductsAll = () => {
   const classes = useStyles();
   const { id } = useParams();
   const { products } = useSelector((state: IRootState) => state.product);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleClick = (e: React.MouseEvent, id: string, title: string) => {
+    e.preventDefault();
+    dispatch(setSelectedProductId(id));
+    navigate(`/product/${title}`);
+  };
   return (
     <div className="min-h-[100vh] flex flex-col gap-5 mt-[12vh]">
       <div className="title w-[95%] mx-auto">
@@ -28,10 +37,12 @@ const ProductsAll = () => {
           products.map((p) => {
             return (
               <motion.div
+                key={p.title}
                 whileHover={{ scale: "1.05" }}
+                onClick={(e) => handleClick(e, p._id, p.title)}
                 className="eachProduct cursor-pointer hover:border hover:border-[#09dd6d] transition-all ease-in duration-150 p-2 rounded-2xl border border-[#393939] w-full sm:w-[48%] xl:w-[30%] flex flex-col gap-3 sm:justify-between"
               >
-                <div className="img w-full flex justify-center w-full overflow-hidden max-h-[45vh]">
+                <div className="img w-full flex justify-center overflow-hidden max-h-[45vh]">
                   <img src={p.thumbnail} alt="" className="rounded-xl" />
                 </div>
                 <div className="details flex justify-between">
@@ -40,7 +51,9 @@ const ProductsAll = () => {
                     <h1 className="text-[0.8rem]">
                       <span>{p.brand}</span>
                     </h1>
-                    <h1 className="text-[0.7rem] w-[60%]">{p.description}</h1>
+                    <h1 className="text-[0.7rem] w-[80%]">
+                      {p.description.split(" ").slice(0, 10).join(" ") + "..."}
+                    </h1>
                     <Rating
                       name="read-only"
                       size="small"
@@ -59,7 +72,26 @@ const ProductsAll = () => {
                     <h1 className="font-[500] text-[1.2rem]">
                       <span>Rs.{p.price}</span>
                     </h1>
-                    <button className="button-var-1">{"+"} Cart</button>
+                    <h1 className="font-[500] whitespace-nowrap  text-[0.95rem]">
+                      <span
+                        className={`${
+                          p.stock > 5
+                            ? "text-[#09dd6d]"
+                            : p.stock !== 0
+                            ? "text-yellow-500"
+                            : "text-red-500"
+                        }`}
+                      >
+                        {p.stock > 5
+                          ? "In Stock"
+                          : p.stock !== 0
+                          ? `Only ${p.stock} left`
+                          : "Out of Stock"}
+                      </span>
+                    </h1>
+                    {p.stock !== 0 && (
+                      <button className="button-var-1">{"+"} Cart</button>
+                    )}
                   </div>
                 </div>
               </motion.div>

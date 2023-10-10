@@ -8,7 +8,10 @@ const ProductSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    price: {
+    originalPrice: {
+      type: Number,
+    },
+    discountedPrice: {
       type: Number,
     },
     rating: {
@@ -30,6 +33,8 @@ const ProductSchema = new mongoose.Schema(
     sales: {
       type: Number,
     },
+    about: [],
+    box: [],
   },
   { timestamps: true }
 );

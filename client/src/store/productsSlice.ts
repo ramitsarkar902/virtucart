@@ -9,18 +9,38 @@ interface InitialProp {
   bestSellingProduct: Array<BestSellingProduct>;
   newlyLaunchedProducts: Array<NewlyLauncedProducts>;
   products: Array<ProductsProp>;
+  product: ProductsProp;
+  selectedProductId: string;
 }
 
 const initialState: InitialProp = {
   bestSellingProduct: [],
   newlyLaunchedProducts: [],
   products: [],
+  product: {
+    _id: "",
+  title: "",
+  description: "",
+  price: -1,
+  rating: -1,
+  stock: -1,
+  brand: "",
+  category: "",
+  thumbnail: "",
+  images: [],
+  createdAt: "",
+  updatedAt: "",
+  },
+  selectedProductId: "",
 };
 
 export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    setSelectedProductId: (state, action) => {
+      state.selectedProductId = action.payload;
+    },
     storeBestSellingProduct: (state, action) => {
       state.bestSellingProduct = action.payload;
     },
@@ -30,13 +50,18 @@ export const productSlice = createSlice({
     storeProducts: (state, action) => {
       state.products = action.payload;
     },
+    storeProduct: (state, action) => {
+      state.product = action.payload;
+    },
   },
 });
 
 export const {
+  setSelectedProductId,
   storeBestSellingProduct,
   storeNewlyLaunchedProducts,
   storeProducts,
+  storeProduct,
 } = productSlice.actions;
 
 export default productSlice.reducer;

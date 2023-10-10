@@ -7,6 +7,7 @@ interface InitialProp {
   active: number;
   userData: UserDets;
   token: string;
+  activeUrl: string;
 }
 
 const initialState: InitialProp = {
@@ -20,6 +21,7 @@ const initialState: InitialProp = {
     img: "",
   },
   token: "",
+  activeUrl: "",
 };
 
 export const userSlice = createSlice({
@@ -28,6 +30,9 @@ export const userSlice = createSlice({
   reducers: {
     setIsLoggedIn: (state, action) => {
       state.isLoggedIn = action.payload;
+    },
+    setActiveUrl: (state, action) => {
+      state.activeUrl = action.payload;
     },
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
@@ -47,6 +52,7 @@ export const userSlice = createSlice({
 export const {
   setIsLoggedIn,
   setIsLoading,
+  setActiveUrl,
   setActive,
   storeUserData,
   storeToken,
