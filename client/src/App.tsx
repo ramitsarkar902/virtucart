@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -32,8 +32,8 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<Home />} />
+        {/* <Route path="/" element={<Navigate to="/home" />} /> */}
+        <Route path="/" element={<Home />} />
         <Route path="/products/:id" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/service/:id" element={<Service />} />
