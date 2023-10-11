@@ -57,7 +57,13 @@ const Navbar = () => {
           : "mt-0 w-full rounded-0 border-b border-[#09dd6d] "
       } flex items-center justify-between  h-[8vh] mx-auto bg-[#1f1f1f] transition-all ease-out duration-150 z-30`}
     >
-      <h1 className="text-[0.95rem] font-[500]">
+      <h1
+        className="text-[0.95rem] font-[500] cursor-pointer"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate("/");
+        }}
+      >
         Virtu<span>Cart</span>
       </h1>
       <div className="menu sm:hidden relative">
