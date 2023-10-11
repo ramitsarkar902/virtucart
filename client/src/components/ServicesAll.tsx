@@ -68,7 +68,7 @@ const ServicesAll = () => {
                     <h1 className="font-[500] text-[1.2rem]">
                       <span>Rs.{p.price}</span>
                     </h1>
-                    <button className="button-var-1">{"+"} Cart</button>
+                    {/* <button className="button-var-1">{"+"} Cart</button> */}
                   </div>
                 </div>
               </motion.div>

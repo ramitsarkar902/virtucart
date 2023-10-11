@@ -346,8 +346,7 @@ const Navbar = () => {
           className="cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
-            console.log("clicked");
-            
+
             navigate("/cart");
           }}
         />

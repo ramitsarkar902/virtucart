@@ -29,10 +29,10 @@ const HeroProd = () => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const amount =
+      bestSellingProduct &&
       bestSellingProduct[0].discountedPrice &&
       bestSellingProduct[0].discountedPrice +
         FindTax("product", bestSellingProduct[0].discountedPrice).tax;
-    // dispatch(addCost(Number(amount.toFixed(2))));
     dispatch(addCost(amount));
     dispatch(addCartProducts(bestSellingProduct[0]));
     toast.success("Item added to cart");

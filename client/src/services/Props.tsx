@@ -29,6 +29,8 @@ export interface NewlyLauncedProducts {
   _id: string;
   title: string;
   description: string;
+  originalPrice: number;
+  discountedPrice: number;
   brand: string;
   thumbnail: string;
 }
@@ -83,6 +85,7 @@ export interface NewlyLauncedServices {
   _id: string;
   title: string;
   description: string;
+  price: number;
   providedBy: string;
   thumbnail: string;
 }

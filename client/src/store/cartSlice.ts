@@ -36,6 +36,12 @@ export const cartSlice = createSlice({
         });
       }
     },
+    clearCartProducts: (state) => {
+      state.products = [];
+    },
+    clearCartServices: (state) => {
+      state.services = [];
+    },
     addCartServices: (state, action) => {
       const serviceToAdd = action.payload;
       const existingService = state.services.find(
@@ -82,10 +88,15 @@ export const cartSlice = createSlice({
       }
     },
     addCost: (state, action) => {
-      state.totalCost = state.totalCost + action.payload;
+      const res = state.totalCost + action.payload;
+      state.totalCost = res;
+    },
+    clearCost: (state) => {
+      state.totalCost = 0;
     },
     removeCost: (state, action) => {
-      state.totalCost = state.totalCost - action.payload;
+      const res = Number((state.totalCost - action.payload).toFixed(2));
+      state.totalCost = res;
     },
   },
 });
@@ -97,8 +108,11 @@ export const {
   addCartServices,
   removeCartProduct,
   removeCartService,
+  clearCartProducts,
+  clearCartServices,
   addCost,
   removeCost,
+  clearCost,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -4,7 +4,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { getNewlyLaunchedProd } from "../apis/api";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
-import { addCartProducts } from "../store/cartSlice";
+import { addCartProducts, addCost } from "../store/cartSlice";
+import { NewlyLauncedProducts } from "../services/Props";
+import { FindTax } from "../services/Tax";
 
 const NewLaunchedProduct = () => {
   const { newlyLaunchedProducts } = useSelector(
@@ -24,8 +26,11 @@ const NewLaunchedProduct = () => {
     };
     fetchNewlyLaunchedProd();
   }, []);
-  const handleClick = (e: React.MouseEvent, id: object) => {
+  const handleClick = (e: React.MouseEvent, id: NewlyLauncedProducts) => {
     e.preventDefault();
+    const amount =
+      id.discountedPrice + FindTax("product", id.discountedPrice).tax;
+    dispatch(addCost(amount));
     dispatch(addCartProducts(id));
     toast.success("Item added to cart");
   };
