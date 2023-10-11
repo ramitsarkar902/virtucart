@@ -1,4 +1,4 @@
-import { useState } from "react";
+/* import { useState } from "react";
 
 const Profile: React.FC = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
@@ -9,7 +9,6 @@ const Profile: React.FC = () => {
   const [workAddress, setWorkAddress] = useState(
     "456 Business Ave, City, Country"
   );
-  const [password, setPassword] = useState("");
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -93,19 +92,6 @@ const Profile: React.FC = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="password" className="block mb-2 text-black">
-            Change Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border p-2 w-full"
-          />
-        </div>
-
-        <div className="mb-4">
           <label htmlFor="homeAddress" className="block mb-2 text-black">
             Home Address
           </label>
@@ -143,3 +129,4 @@ const Profile: React.FC = () => {
 };
 
 export default Profile;
+ */
