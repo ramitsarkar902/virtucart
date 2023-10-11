@@ -35,7 +35,7 @@ const CartItems = () => {
       setTotalItems(products.length + services.length);
     }
   }, [products, services]);
-  
+
   const handleSubmitOrder = (e: React.MouseEvent) => {
     e.preventDefault();
   };
@@ -56,8 +56,8 @@ const CartItems = () => {
             <h1 className=" text-[0.85rem] sm:text-[1.3rem] w-[50%] md:w-fit font-[500]">
               Total Cost : <span>{totalCost.toFixed(2)}</span>
             </h1>
-            <div className="button flex gap-3 items-center">
-              {totalItems > 0 && (
+            {totalItems > 0 && (
+              <div className="button flex gap-3 items-center">
                 <motion.div className="clearAll">
                   <button
                     className="button-var-1"
@@ -66,8 +66,7 @@ const CartItems = () => {
                     Place Order
                   </button>
                 </motion.div>
-              )}
-              {totalItems > 0 && (
+
                 <motion.div className="clearAll ">
                   <button
                     className="button-var-2"
@@ -81,8 +80,8 @@ const CartItems = () => {
                     Clear Cart
                   </button>
                 </motion.div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="items w-full ">
