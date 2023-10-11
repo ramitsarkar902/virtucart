@@ -1,6 +1,7 @@
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { NavItems } from "../services/Items";
 import { Logout } from "../services/Logout";
 import { IRootState } from "../store/store";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-
 
 const Navbar = () => {
   const { userData, active, isLoggedIn } = useSelector(
@@ -58,7 +57,13 @@ const Navbar = () => {
           : "mt-0 w-full rounded-0 border-b border-[#09dd6d] "
       } flex items-center justify-between  h-[8vh] mx-auto bg-[#1f1f1f] transition-all ease-out duration-150 z-30`}
     >
-      <h1 className="text-[0.95rem] font-[500]">
+      <h1
+        className="text-[0.95rem] font-[500] cursor-pointer"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate("/");
+        }}
+      >
         Virtu<span>Cart</span>
       </h1>
       <div className="menu sm:hidden relative">

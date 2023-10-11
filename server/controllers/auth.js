@@ -54,12 +54,15 @@ export const signup = async (req, res, next) => {
 export const signin = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(403).json("Wrong Email!");
+    if (!user) {
+      console.log("ayo");
+      return res.status(401).json("Wrong Email!");
+    }
 
     const isCorrect = await bcrypt.compare(req.body.password, user.password);
 
     if (!isCorrect) {
-      return res.status(403).json("Wrong Password!");
+      return res.status(401).json("Wrong Password!");
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT, {
