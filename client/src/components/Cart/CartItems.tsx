@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 
 const CartItems = () => {
   const classes = useStyles();
-  const { products, services } = useSelector((state: IRootState) => state.cart);
+  const { products } = useSelector((state: IRootState) => state.cart);
   return (
     <div className="w-full min-h-[100vh]">
       <div className="wrapper flex flex-col gap-5 w-[95%] mx-auto mt-[12vh]">

@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 import { ToastContainer } from "react-toastify";
 import CartItems from "../components/Cart/CartItems";
