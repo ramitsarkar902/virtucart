@@ -37,7 +37,7 @@ describe("Login Endpoint", () => {
     }
   });
 
-  /* it("should return 200 and a success message on successful signup", async () => {
+  it("should return 200 and a success message on successful signup", async () => {
     const response = await axios.post("http://localhost:9000/api/auth/signup", {
       email: "test1@.com",
       password: "ok",
@@ -45,7 +45,7 @@ describe("Login Endpoint", () => {
     });
     expect(response.userData.name).toBe("test1");
     expect(response.status).toBe(200);
-  }); */
+  });
 });
 
 describe("User Endpoint", () => {
