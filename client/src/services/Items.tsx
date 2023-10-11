@@ -49,7 +49,15 @@ export const NavItems = [
       },
       {
         id: 2,
-        name: "Utensils",
+        name: "Laptops",
+      },
+      {
+        id: 3,
+        name: "Covers",
+      },
+      {
+        id: 4,
+        name: "Headphones",
       },
     ],
   },

@@ -42,7 +42,7 @@ const ProductsAll = () => {
                 onClick={(e) => handleClick(e, p._id, p.title)}
                 className="eachProduct cursor-pointer hover:border hover:border-[#09dd6d] transition-all ease-in duration-150 p-2 rounded-2xl border border-[#393939] w-full sm:w-[48%] xl:w-[30%] flex flex-col gap-3 sm:justify-between"
               >
-                <div className="img w-full flex justify-center overflow-hidden max-h-[45vh]">
+                <div className="img w-[18rem] items-center mx-auto flex justify-center overflow-hidden h-auto">
                   <img src={p.thumbnail} alt="" className="rounded-xl" />
                 </div>
                 <div className="details flex justify-between">
@@ -68,10 +68,20 @@ const ProductsAll = () => {
                       }
                     />
                   </div>
-                  <div className="right flex flex-col items-center justify-between">
-                    <h1 className="font-[500] text-[1.2rem]">
-                      <span>Rs.{p.price}</span>
+                  <div className="right flex flex-col gap-5 items-center justify-between">
+                    <h1
+                      className={`font-[500] text-[1rem] ${
+                        p.discountedPrice !== p.originalPrice && "line-through"
+                      }`}
+                    >
+                      <span>Rs. {p.originalPrice} </span>
                     </h1>
+                    {p.discountedPrice !== p.originalPrice && (
+                      <h1 className="font-[500] text-[1rem]">
+                        <span>Rs. {p.discountedPrice} </span>
+                      </h1>
+                    )}
+
                     <h1 className="font-[500] whitespace-nowrap  text-[0.95rem]">
                       <span
                         className={`${

@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { getProductInfo } from "../apis/api";
+import { getProductInfo, getServiceInfo } from "../apis/api";
 import Navbar from "../components/Navbar";
-import Section1 from "../components/Product/Section1";
+import Section1 from "../components/Service/Section1";
 import { IRootState } from "../store/store";
 
-const Product = () => {
+const Service = () => {
   const dispatch = useDispatch();
-  const { selectedProductId } = useSelector(
-    (state: IRootState) => state.product
+  const { selectedServiceId } = useSelector(
+    (state: IRootState) => state.service
   );
   useEffect(() => {
-    const fetchProductInfo = async () => {
-      const res = await getProductInfo(dispatch, selectedProductId);
+    const fetchServiceInfo = async () => {
+      const res = await getServiceInfo(dispatch, selectedServiceId);
       if (typeof res === "string") {
         toast.warn(res);
       }
     };
-    fetchProductInfo();
+    fetchServiceInfo();
   }, []);
   return (
     <div className="flex flex-col">
@@ -29,4 +29,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Service;

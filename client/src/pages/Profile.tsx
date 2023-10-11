@@ -1,4 +1,4 @@
-/* import { useState } from "react";
+import { useState } from "react";
 
 const Profile: React.FC = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
@@ -129,4 +129,3 @@ const Profile: React.FC = () => {
 };
 
 export default Profile;
- */

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getNewlyLaunchedProd } from "../apis/api";
 import { ToastContainer, toast } from "react-toastify";
+import { getNewlyLaunchedProd } from "../apis/api";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
 
@@ -51,18 +51,20 @@ const NewLaunchedProduct = () => {
                       {n.title}
                     </h1>
                     <h1 className="w-[100%] sm:w-[60%] text-center mx-auto">
-                      {n.description}
+                      {n.description.split(" ").slice(0, 10).join(" ")}...
                     </h1>
                     <div className="button flex items-center justify-center gap-5">
                       <h1 className="text-[1rem] font-[500]">
                         <span>Learn More {">"}</span>
                       </h1>
                       <h1 className="text-[1rem] font-[500]">
-                        <span>Buy {">"}</span>
+                        <span>
+                          {"+ "}Cart {">"}
+                        </span>
                       </h1>
                     </div>
                   </div>
-                  <div className="bottom flex justify-end items-end w-[30rem]">
+                  <div className="bottom flex justify-end items-end w-[15rem]">
                     <img
                       src={n.thumbnail}
                       alt=""

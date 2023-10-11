@@ -46,7 +46,7 @@ const HeroService = () => {
                 Learn More {">"}
               </h1>
               <h1 className="text-[#09dd6d] text-[1.2rem] md:text-[1.5rem] xl:text-[1.3rem] font-[500] cursor-pointer">
-                Buy {">"}
+                {"+ "}Cart {">"}
               </h1>
             </div>
           </div>

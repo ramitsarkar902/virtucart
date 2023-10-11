@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import { IRootState } from "./store/store";
 import { setActive, setActiveUrl } from "./store/userSlice";
 import Product from "./pages/Product";
+import Profile from "./pages/Profile";
+import Service from "./pages/Service";
 
 function App() {
   const { activeUrl } = useSelector((state: IRootState) => state.user);
@@ -19,13 +21,13 @@ function App() {
     const path = window.location.pathname;
     dispatch(setActiveUrl(path));
   }, [window.location.pathname]);
-  /* if (activeUrl !== "" && (activeUrl === "/home" || activeUrl === "/")) {
+  if (activeUrl !== "" && (activeUrl === "/home" || activeUrl === "/")) {
     dispatch(setActive(2));
   } else if (activeUrl !== "" && activeUrl.includes("/products")) {
     dispatch(setActive(3));
   } else if (activeUrl !== "" && activeUrl === "/services") {
     dispatch(setActive(4));
-  } */
+  }
   return (
     <div className="app">
       <Routes>
@@ -33,9 +35,11 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/products/:id" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
+        <Route path="/service/:id" element={<Service />} />
         <Route path="/services" element={<Services />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </div>
