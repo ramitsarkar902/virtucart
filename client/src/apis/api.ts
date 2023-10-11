@@ -9,6 +9,7 @@ import {
 import {
   storeBestSellingService,
   storeNewlyLaunchedServices,
+  storeService,
   storeServices,
 } from "../store/serviceSlice";
 import { storeToken, storeUserData } from "../store/userSlice";
@@ -102,6 +103,16 @@ export const getProductInfo = async (dispatch: any, id: string) => {
   try {
     const res = await axios.get(`${api_url}/products/${id}`);
     dispatch(storeProduct(res.data));
+    return res.status;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+
+export const getServiceInfo = async (dispatch: any, id: string) => {
+  try {
+    const res = await axios.get(`${api_url}/services/${id}`);
+    dispatch(storeService(res.data));
     return res.status;
   } catch (error: any) {
     return error.response.data;

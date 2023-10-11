@@ -11,8 +11,8 @@ const ServiceSchema = new mongoose.Schema(
     price: {
       type: Number,
     },
-    providedBy:{
-        type:String,
+    providedBy: {
+      type: String,
     },
     rating: {
       type: Number,
@@ -26,6 +26,8 @@ const ServiceSchema = new mongoose.Schema(
     sales: {
       type: Number,
     },
+    about: [],
+    images: [],
   },
   { timestamps: true }
 );

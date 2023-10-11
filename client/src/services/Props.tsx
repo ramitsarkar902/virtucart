@@ -35,7 +35,10 @@ export interface ProductsProp {
   _id: string;
   title: string;
   description: string;
-  price: number;
+  originalPrice: number;
+  discountedPrice: number;
+  about:[];
+  box:[];
   rating: number;
   stock: number;
   brand: string;
@@ -51,9 +54,16 @@ export interface ServicesProp {
   title: string;
   description: string;
   price: number;
+  about:[];
+  box:[];
   rating: number;
+  stock: number;
   providedBy: string;
+  category: string;
   thumbnail: string;
+  images: [];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BestSellingService {
