@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
-import Profile from "./pages/Profile";
+// import Profile from "./pages/Profile";
 import Service from "./pages/Service";
 import Services from "./pages/Services";
 import Signup from "./pages/Signup";
@@ -40,7 +40,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />

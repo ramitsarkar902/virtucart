@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../store/store";
 import { Rating } from "@mui/material";

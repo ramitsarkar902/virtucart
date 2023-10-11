@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../store/store";
 import { Rating } from "@mui/material";
@@ -6,6 +5,7 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { makeStyles } from "@mui/styles";
 import FiberSmartRecordIcon from "@mui/icons-material/FiberSmartRecord";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import { useEffect, useState } from "react";
 
 const useStyles = makeStyles({
   emptyIcon: {

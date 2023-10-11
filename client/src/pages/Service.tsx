@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { getProductInfo, getServiceInfo } from "../apis/api";
+import { getServiceInfo } from "../apis/api";
 import Navbar from "../components/Navbar";
 import Section1 from "../components/Service/Section1";
 import { IRootState } from "../store/store";
