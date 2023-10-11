@@ -34,6 +34,15 @@ span {
   color: #09dd6d;
   border: 1px solid #09dd6d;
 }
+.button-var-2 {
+  padding: 5px 8px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  border-radius: 10px;
+  background: #191919;
+  color: #960000;
+  border: 1px solid #960000;
+}
 
 .signup,
 .login {
@@ -70,3 +79,4 @@ span {
     transform: rotate(360deg);
   }
 }
+

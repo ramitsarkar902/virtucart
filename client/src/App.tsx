@@ -40,8 +40,8 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/cart" element={<Cart />} />
+        {/* <Route path="/profile" element={<Profile />} /> */}
       </Routes>
       <Footer />
     </div>

@@ -10,7 +10,6 @@ import { Logout } from "../services/Logout";
 import { IRootState } from "../store/store";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-
 const Navbar = () => {
   const { userData, active, isLoggedIn } = useSelector(
     (state: IRootState) => state.user
@@ -79,11 +78,8 @@ const Navbar = () => {
                   className="eachitem  relative text-[#09dd6d] flex flex-col gap-2 justify-between w-full "
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log(n.id);
 
-                    if (n.id === 1 && !isLoggedIn) {
-                      navigate("/login");
-                    } else if (n.id === 2) {
+                    if (n.id === 2) {
                       navigate("/");
                     } else if (n.id === 4) {
                       navigate(`/services`);
@@ -121,7 +117,15 @@ const Navbar = () => {
                         </div>
                       ) : (
                         <div className="flex items-center w-full justify-between">
-                          <button className="button-var-1">Login</button>
+                          <button
+                            className="button-var-1"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigate("/login");
+                            }}
+                          >
+                            Login
+                          </button>
                           <ShoppingCartIcon
                             fontSize={iconSize}
                             className="cursor-pointer"
@@ -336,6 +340,8 @@ const Navbar = () => {
           className="cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
+            console.log("clicked");
+            
             navigate("/cart");
           }}
         />

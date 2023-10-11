@@ -86,7 +86,7 @@ const NewLaunchedProduct = () => {
             })}
         </div>
       </div>
-      <ToastContainer theme="dark" />
+      {/* <ToastContainer theme="dark" /> */}
     </div>
   );
 };

@@ -19,6 +19,8 @@ export interface BestSellingProduct {
   _id: string;
   title: string;
   description: string;
+  originalPrice:number;
+  discountedPrice:number;
   brand: string;
   thumbnail: string;
 }
@@ -70,6 +72,7 @@ export interface BestSellingService {
   _id: string;
   title: string;
   description: string;
+  price:number;
   providedBy: string;
   thumbnail: string;
 }

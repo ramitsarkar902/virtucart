@@ -5,7 +5,8 @@ import { getBestSellingProd } from "../apis/api";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
 import Loader from "./Loader";
-import { addCartProducts } from "../store/cartSlice";
+import { addCartProducts, addCost } from "../store/cartSlice";
+import { FindTax } from "../services/Tax";
 
 const HeroProd = () => {
   const { bestSellingProduct } = useSelector(
@@ -27,6 +28,12 @@ const HeroProd = () => {
   }, []);
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    const amount =
+      bestSellingProduct[0].discountedPrice &&
+      bestSellingProduct[0].discountedPrice +
+        FindTax("product", bestSellingProduct[0].discountedPrice).tax;
+    // dispatch(addCost(Number(amount.toFixed(2))));
+    dispatch(addCost(amount));
     dispatch(addCartProducts(bestSellingProduct[0]));
     toast.success("Item added to cart");
   };
@@ -75,7 +82,7 @@ const HeroProd = () => {
         </div>
       )}
 
-      <ToastContainer theme="dark"/>
+      {/* <ToastContainer theme="dark" /> */}
       {/* <iframe
         className="w-full h-full"
         src="https://my.spline.design/iphone14procopy-d913a52c8fbbc39d79d45caab7ed9305/"

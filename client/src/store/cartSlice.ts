@@ -4,11 +4,13 @@ import { ProductsProp, ServicesProp } from "../services/Props";
 interface InitialProp {
   products: Array<ProductsProp>;
   services: Array<ServicesProp>;
+  totalCost: number;
 }
 
 const initialState: InitialProp = {
   products: [],
   services: [],
+  totalCost: 0,
 };
 
 export const cartSlice = createSlice({
@@ -37,6 +39,12 @@ export const cartSlice = createSlice({
         (service) => service._id !== action.payload
       );
     },
+    addCost: (state, action) => {
+      state.totalCost = state.totalCost + action.payload;
+    },
+    removeCost: (state, action) => {
+      state.totalCost = state.totalCost - action.payload;
+    },
   },
 });
 
@@ -47,6 +55,8 @@ export const {
   addCartServices,
   removeCartProduct,
   removeCartService,
+  addCost,
+  removeCost
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

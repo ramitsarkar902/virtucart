@@ -5,7 +5,8 @@ import { getBestSellingService } from "../apis/api";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
 import Loader from "./Loader";
-import { addCartServices } from "../store/cartSlice";
+import { addCartServices, addCost } from "../store/cartSlice";
+import { FindTax } from "../services/Tax";
 
 const HeroService = () => {
   const { bestSellingService } = useSelector(
@@ -27,9 +28,15 @@ const HeroService = () => {
   }, []);
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    const amount =
+      bestSellingService[0].price &&
+      bestSellingService[0].price +
+        FindTax("service", bestSellingService[0].price).tax;
+    // dispatch(addCost(Number(amount.toFixed(2))));
+    dispatch(addCost(amount));
+
     dispatch(addCartServices(bestSellingService[0]));
     toast.success("Service added to cart");
-
   };
   return (
     <div className="h-[100vh] w-full flex flex-col justify-center items-center p-[5rem]">
