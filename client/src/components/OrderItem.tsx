@@ -1,19 +1,15 @@
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "../../store/store";
 import { Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { FindTax } from "../../services/Tax";
+import { useEffect, useState } from "react";
+import { IRootState } from "../store/store";
+import { FindTax } from "../services/Tax";
 import {
-  clearCartProducts,
-  clearCartServices,
-  clearCost,
   removeCartProduct,
   removeCartService,
   removeCost,
-} from "../../store/cartSlice";
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+} from "../store/cartSlice";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -21,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CartItems = () => {
+const OrderItems = () => {
   const [cartId, setCardId] = useState<Array<"">>([]);
   const [totalItems, setTotalItems] = useState(0);
 
@@ -35,10 +31,6 @@ const CartItems = () => {
       setTotalItems(products.length + services.length);
     }
   }, [products, services]);
-  
-  const handleSubmitOrder = (e: React.MouseEvent) => {
-    e.preventDefault();
-  };
   return (
     <div className="w-full min-h-[100vh]">
       <div className="wrapper flex flex-col gap-10 w-[95%] mx-auto mt-[12vh]">
@@ -49,40 +41,13 @@ const CartItems = () => {
           <h1 className="text-[1.3rem] sm:text-[3rem] font-[600]">
             Check<span>out</span>
           </h1>
-          <div className="row1 w-full flex flex-wrap items-center gap-5 justify-center md:flex-row md:justify-between md:gap-0">
-            <h1 className="text-[0.85rem] sm:text-[1.3rem] w-[40%] md:w-fit font-[500]">
+          <div className="row1 w-full flex items-center justify-between">
+            <h1 className="text-[0.95rem] sm:text-[1.3rem] font-[500]">
               Total Items : <span>{totalItems}</span>
             </h1>
-            <h1 className=" text-[0.85rem] sm:text-[1.3rem] w-[50%] md:w-fit font-[500]">
+            <h1 className=" text-[0.95rem] sm:text-[1.3rem] font-[500]">
               Total Cost : <span>{totalCost.toFixed(2)}</span>
             </h1>
-            <div className="button flex gap-3 items-center">
-              {totalItems > 0 && (
-                <motion.div className="clearAll">
-                  <button
-                    className="button-var-1"
-                    onClick={(e) => handleSubmitOrder(e)}
-                  >
-                    Place Order
-                  </button>
-                </motion.div>
-              )}
-              {totalItems > 0 && (
-                <motion.div className="clearAll ">
-                  <button
-                    className="button-var-2"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(clearCartProducts());
-                      dispatch(clearCartServices());
-                      dispatch(clearCost());
-                    }}
-                  >
-                    Clear Cart
-                  </button>
-                </motion.div>
-              )}
-            </div>
           </div>
         </div>
         <div className="items w-full ">
@@ -287,4 +252,4 @@ const CartItems = () => {
   );
 };
 
-export default CartItems;
+export default OrderItems;

@@ -26,6 +26,12 @@ export const cartSlice = createSlice({
     addCartProducts: (state, action) => {
       state.products.push(action.payload);
     },
+    clearCartProducts: (state) => {
+      state.products = [];
+    },
+    clearCartServices: (state) => {
+      state.services = [];
+    },
     addCartServices: (state, action) => {
       state.services.push(action.payload);
     },
@@ -43,6 +49,9 @@ export const cartSlice = createSlice({
       const res = state.totalCost + action.payload;
       state.totalCost = res;
     },
+    clearCost: (state) => {
+      state.totalCost = 0;
+    },
     removeCost: (state, action) => {
       const res = Number((state.totalCost - action.payload).toFixed(2));
       state.totalCost = res;
@@ -59,6 +68,9 @@ export const {
   removeCartService,
   addCost,
   removeCost,
+  clearCartProducts,
+  clearCartServices,
+  clearCost,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
