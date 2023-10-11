@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IRootState } from "../store/store";
 import React from "react";
 import { setSelectedProductId } from "../store/productsSlice";
+import { addCartProducts } from "../store/cartSlice";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -24,6 +26,11 @@ const ProductsAll = () => {
     e.preventDefault();
     dispatch(setSelectedProductId(id));
     navigate(`/product/${title}`);
+  };
+  const handleClickAddCart = (e: React.MouseEvent, id: object) => {
+    e.preventDefault();
+    dispatch(addCartProducts(id));
+    toast.success("Item added to cart");
   };
   return (
     <div className="min-h-[100vh] flex flex-col gap-5 mt-[12vh]">
@@ -100,7 +107,7 @@ const ProductsAll = () => {
                       </span>
                     </h1>
                     {p.stock !== 0 && (
-                      <button className="button-var-1">{"+"} Cart</button>
+                      <button className="button-var-1" onClick={(e) => handleClickAddCart(e, p)}>{"+"} Cart</button>
                     )}
                   </div>
                 </div>

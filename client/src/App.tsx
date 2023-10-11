@@ -1,18 +1,19 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Products from "./pages/Products";
-import Services from "./pages/Services";
-import Signup from "./pages/Signup";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { IRootState } from "./store/store";
-import { setActive, setActiveUrl } from "./store/userSlice";
 import Product from "./pages/Product";
+import Products from "./pages/Products";
 import Profile from "./pages/Profile";
 import Service from "./pages/Service";
+import Services from "./pages/Services";
+import Signup from "./pages/Signup";
+import { IRootState } from "./store/store";
+import { setActive, setActiveUrl } from "./store/userSlice";
+import Cart from "./pages/Cart";
 
 function App() {
   const { activeUrl } = useSelector((state: IRootState) => state.user);
@@ -40,6 +41,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </div>

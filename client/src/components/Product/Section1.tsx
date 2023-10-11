@@ -64,6 +64,8 @@ const Section1 = () => {
             <div className="left flex flex-col gap-1">
               <h1
                 className={`text-[1rem] xl:text-[1.2rem] font-[500] text-center ${
+                  product &&
+                  product.originalPrice &&
                   product.originalPrice !== product.discountedPrice &&
                   "line-through"
                 }`}
@@ -73,16 +75,18 @@ const Section1 = () => {
                   {product && product.originalPrice && product.originalPrice}
                 </span>
               </h1>
-              {product.originalPrice !== product.discountedPrice && (
-                <h1 className="text-[1rem] xl:text-[1.2rem] font-[500] text-center">
-                  Rs.{" "}
-                  <span>
-                    {product &&
-                      product.discountedPrice &&
-                      product.discountedPrice}
-                  </span>
-                </h1>
-              )}
+              {product &&
+                product.originalPrice &&
+                product.originalPrice !== product.discountedPrice && (
+                  <h1 className="text-[1rem] xl:text-[1.2rem] font-[500] text-center">
+                    Rs.{" "}
+                    <span>
+                      {product &&
+                        product.discountedPrice &&
+                        product.discountedPrice}
+                    </span>
+                  </h1>
+                )}
             </div>
             <div className="right">
               <button className="button-var-1">{"+ "}Cart</button>

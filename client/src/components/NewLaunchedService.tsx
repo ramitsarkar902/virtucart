@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { getNewlyLaunchedService } from "../apis/api";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
+import { addCartServices } from "../store/cartSlice";
 
 const NewLaunchedService = () => {
   const { newlyLaunchedServices } = useSelector(
@@ -23,6 +24,11 @@ const NewLaunchedService = () => {
     };
     fetchNewlyLaunchedService();
   }, []);
+  const handleClick = (e: React.MouseEvent, id: object) => {
+    e.preventDefault();
+    dispatch(addCartServices(id));
+    toast.success("Service added to cart");
+  };
   return (
     <div className="w-full h-fit flex flex-col mt-10 gap-10">
       <div className="title w-full flex justify-center items-center">
@@ -57,7 +63,10 @@ const NewLaunchedService = () => {
                       <h1 className="text-[1rem] font-[500]">
                         <span>Learn More {">"}</span>
                       </h1>
-                      <h1 className="text-[1rem] font-[500]">
+                      <h1
+                        className="text-[1rem] font-[500]"
+                        onClick={(e) => handleClick(e, n)}
+                      >
                         <span>
                           {"+ "}Cart {">"}
                         </span>

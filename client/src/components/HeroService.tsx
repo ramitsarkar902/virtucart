@@ -5,6 +5,7 @@ import { getBestSellingService } from "../apis/api";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
 import Loader from "./Loader";
+import { addCartServices } from "../store/cartSlice";
 
 const HeroService = () => {
   const { bestSellingService } = useSelector(
@@ -24,6 +25,12 @@ const HeroService = () => {
     };
     fetchBestProd();
   }, []);
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dispatch(addCartServices(bestSellingService[0]));
+    toast.success("Service added to cart");
+
+  };
   return (
     <div className="h-[100vh] w-full flex flex-col justify-center items-center p-[5rem]">
       {isLoading ? (
@@ -45,7 +52,10 @@ const HeroService = () => {
               <h1 className="text-[#09dd6d] text-[1.2rem] md:text-[1.5rem] xl:text-[1.3rem]  font-[500] cursor-pointer">
                 Learn More {">"}
               </h1>
-              <h1 className="text-[#09dd6d] text-[1.2rem] md:text-[1.5rem] xl:text-[1.3rem] font-[500] cursor-pointer">
+              <h1
+                className="text-[#09dd6d] text-[1.2rem] md:text-[1.5rem] xl:text-[1.3rem] font-[500] cursor-pointer"
+                onClick={(e) => handleClick(e)}
+              >
                 {"+ "}Cart {">"}
               </h1>
             </div>

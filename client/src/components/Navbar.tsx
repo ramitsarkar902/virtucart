@@ -125,12 +125,11 @@ const Navbar = () => {
                           <ShoppingCartIcon
                             fontSize={iconSize}
                             className="cursor-pointer"
-                            style={{color:"white"}}
-                            // onClick={(e) => {
-                            //   e.preventDefault();
-                            //   setMod1(!mod1);
-                            //   setMod2(-1);
-                            // }}
+                            style={{ color: "white" }}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigate("/cart");
+                            }}
                           />
                         </div>
                       )
@@ -335,11 +334,10 @@ const Navbar = () => {
         <ShoppingCartIcon
           fontSize={iconSize}
           className="cursor-pointer"
-          // onClick={(e) => {
-          //   e.preventDefault();
-          //   setMod1(!mod1);
-          //   setMod2(-1);
-          // }}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/cart");
+          }}
         />
       </div>
     </div>
