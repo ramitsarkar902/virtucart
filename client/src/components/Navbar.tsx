@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { NavItems } from "../services/Items";
 import { Logout } from "../services/Logout";
 import { IRootState } from "../store/store";
-import { setActive } from "../store/userSlice";
+/* import { setActive } from "../store/userSlice"; */
 
 const Navbar = () => {
   const { userData, active, isLoggedIn } = useSelector(

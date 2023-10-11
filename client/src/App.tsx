@@ -19,13 +19,13 @@ function App() {
     const path = window.location.pathname;
     dispatch(setActiveUrl(path));
   }, [window.location.pathname]);
-  /* if (activeUrl !== "" && (activeUrl === "/home" || activeUrl === "/")) {
+  if (activeUrl !== "" && (activeUrl === "/home" || activeUrl === "/")) {
     dispatch(setActive(2));
   } else if (activeUrl !== "" && activeUrl.includes("/products")) {
     dispatch(setActive(3));
   } else if (activeUrl !== "" && activeUrl === "/services") {
     dispatch(setActive(4));
-  } */
+  }
   return (
     <div className="app">
       <Routes>
