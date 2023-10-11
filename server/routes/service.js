@@ -30,6 +30,6 @@ router.get("/best/service", getBestService);
 
 router.get("/new/services", getNewServices);
 
-router.post("/sell/:id", verifyToken, ServiceSold);
+router.post("/sell", ServiceSold);
 
 export default router;

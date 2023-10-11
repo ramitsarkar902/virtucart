@@ -93,17 +93,23 @@ export const getNewServices = async (req, res, next) => {
 
 export const ServiceSold = async (req, res, next) => {
   try {
-    const p = await Service.findById(req.params.id);
-    if (p.stock <= 0)
-      return res.status(404).json("Service Currently Unavailable!");
-
-    await Service.findByIdAndUpdate(req.params.id, {
-      $inc: { sales: 1, stock: -1 },
-    });
-    await User.findByIdAndUpdate(req.body.userId, {
-      $push: {
-        serviceOrders: req.params.id,
-      },
+    req.body.services.map(async (p) => {
+      const a = await Service.findById(p);
+      await Service.findByIdAndUpdate(p, {
+        $inc: { sales: 1 },
+      });
+      await User.findByIdAndUpdate(req.body.userId, {
+        $push: {
+          serviceOrders: {
+            _id: a._id,
+            title: a.title,
+            providedBy: a.providedBy,
+            thumbnail: a.thumbnail,
+            price: a.price,
+            date: Date.now(),
+          },
+        },
+      });
     });
     res.status(200).json("Service confirmed!");
   } catch (error) {

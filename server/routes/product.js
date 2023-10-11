@@ -33,6 +33,6 @@ router.get("/best/product", getBestProduct);
 
 router.get("/new/products", getNewProducts);
 
-router.post("/sell/:id", verifyToken, productSold);
+router.post("/sell", productSold);
 
 export default router;
