@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../../store/store";
 import { Rating } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -6,6 +6,9 @@ import { makeStyles } from "@mui/styles";
 import FiberSmartRecordIcon from "@mui/icons-material/FiberSmartRecord";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import { useEffect, useState } from "react";
+import { FindTax } from "../../services/Tax";
+import { addCartProducts, addCost } from "../../store/cartSlice";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -15,12 +18,21 @@ const useStyles = makeStyles({
 
 const Section1 = () => {
   const [screenSize, setScreenSize] = useState(-1);
+  const dispatch = useDispatch();
   useEffect(() => {
     setScreenSize(window.innerWidth);
   }, []);
   const iconSize = screenSize >= 640 ? "medium" : "small";
   const { product } = useSelector((state: IRootState) => state.product);
   const classes = useStyles();
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const amount =
+      product.discountedPrice + FindTax("product", product.discountedPrice).tax;
+    dispatch(addCost(amount));
+    dispatch(addCartProducts(product));
+    toast.success("Item added to cart");
+  };
   return (
     <div className="h-auto mt-[10vh] w-full">
       <div className="wrapper flex flex-col w-[95%] mx-auto py-2">
@@ -89,7 +101,9 @@ const Section1 = () => {
                 )}
             </div>
             <div className="right">
-              <button className="button-var-1">{"+ "}Cart</button>
+              <button className="button-var-1" onClick={(e) => handleClick(e)}>
+                {"+ "}Cart
+              </button>
             </div>
           </div>
           <div className="about flex flex-col gap-3">

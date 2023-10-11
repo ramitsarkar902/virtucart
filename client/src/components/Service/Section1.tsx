@@ -1,10 +1,13 @@
-import  { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../../store/store";
 import { Rating } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { makeStyles } from "@mui/styles";
 import FiberSmartRecordIcon from "@mui/icons-material/FiberSmartRecord";
+import { addCartServices, addCost } from "../../store/cartSlice";
+import { FindTax } from "../../services/Tax";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -17,9 +20,17 @@ const Section1 = () => {
   useEffect(() => {
     setScreenSize(window.innerWidth);
   }, []);
+  const dispatch = useDispatch();
   const iconSize = screenSize >= 640 ? "medium" : "small";
   const { service } = useSelector((state: IRootState) => state.service);
   const classes = useStyles();
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const amount = service.price + FindTax("service", service.price).tax;
+    dispatch(addCost(amount));
+    dispatch(addCartServices(service));
+    toast.success("Item added to cart");
+  };
   return (
     <div className="h-auto mt-[10vh] w-full">
       <div className="wrapper flex flex-col w-[95%] mx-auto py-2">
@@ -66,7 +77,9 @@ const Section1 = () => {
               </h1>
             </div>
             <div className="right">
-              <button className="button-var-1">{"+ "}Cart</button>
+              <button className="button-var-1" onClick={(e) => handleClick(e)}>
+                {"+ "}Cart
+              </button>
             </div>
           </div>
           <div className="about flex flex-col gap-3">
@@ -96,7 +109,6 @@ const Section1 = () => {
                 );
               })}
           </div>
-
         </div>
       </div>
     </div>

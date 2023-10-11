@@ -25,6 +25,5 @@ export const FindTax = (name: string, price: number) => {
       taxname = "SC";
     }
   }
-  tax = Number(tax.toFixed(2));
   return { tax, taxname }; // Return an object with tax and taxname properties
 };

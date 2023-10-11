@@ -7,8 +7,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IRootState } from "../store/store";
 import React from "react";
 import { setSelectedProductId } from "../store/productsSlice";
-import { addCartProducts } from "../store/cartSlice";
+import { addCartProducts, addCost } from "../store/cartSlice";
 import { toast } from "react-toastify";
+import { ProductsProp } from "../services/Props";
+import { FindTax } from "../services/Tax";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -27,8 +29,11 @@ const ProductsAll = () => {
     dispatch(setSelectedProductId(id));
     navigate(`/product/${title}`);
   };
-  const handleClickAddCart = (e: React.MouseEvent, id: object) => {
+  const handleClickAddCart = (e: React.MouseEvent, id: ProductsProp) => {
     e.preventDefault();
+    const amount =
+      id.discountedPrice + FindTax("product", id.discountedPrice).tax;
+    dispatch(addCost(amount));
     dispatch(addCartProducts(id));
     toast.success("Item added to cart");
   };
@@ -106,9 +111,14 @@ const ProductsAll = () => {
                           : "Out of Stock"}
                       </span>
                     </h1>
-                    {p.stock !== 0 && (
-                      <button className="button-var-1" onClick={(e) => handleClickAddCart(e, p)}>{"+"} Cart</button>
-                    )}
+                    {/* {p.stock !== 0 && (
+                      <button
+                        className="button-var-1"
+                        onClick={(e) => handleClickAddCart(e, p)}
+                      >
+                        {"+"} Cart
+                      </button>
+                    )} */}
                   </div>
                 </div>
               </motion.div>

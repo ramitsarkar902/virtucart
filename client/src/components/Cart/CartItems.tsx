@@ -9,7 +9,7 @@ import {
   removeCartService,
   removeCost,
 } from "../../store/cartSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -26,12 +26,30 @@ const CartItems = () => {
   const { products, services, totalCost } = useSelector(
     (state: IRootState) => state.cart
   );
+  useEffect(() => {
+    if (products && services) {
+      setTotalItems(products.length + services.length);
+    }
+  }, [products, services]);
   return (
     <div className="w-full min-h-[100vh]">
       <div className="wrapper flex flex-col gap-10 w-[95%] mx-auto mt-[12vh]">
         <h1 className="w-full text-center text-[1.5rem] xl:text-[2.5rem] font-[600]">
           Your Cart - <span>Products</span>{" "}
         </h1>
+        <div className="checkout w-full flex flex-col gap-3">
+          <h1 className="text-[1.3rem] sm:text-[3rem] font-[600]">
+            Check<span>out</span>
+          </h1>
+          <div className="row1 w-full flex items-center justify-between">
+            <h1 className="text-[0.95rem] sm:text-[1.3rem] font-[500]">
+              Total Items : <span>{totalItems}</span>
+            </h1>
+            <h1 className=" text-[0.95rem] sm:text-[1.3rem] font-[500]">
+              Total Cost : <span>{totalCost.toFixed(2)}</span>
+            </h1>
+          </div>
+        </div>
         <div className="items w-full ">
           {products && Object.keys(products).length > 0 ? (
             <div className="products w-full  flex flex-col gap-3">
@@ -105,7 +123,7 @@ const CartItems = () => {
                           </div>
                           <div className="name1 w-[30%]">{taxName}</div>
                           <div className="name1 w-[30%] text-center">
-                            {taxVal}
+                            {Number(taxVal.toFixed(2))}
                           </div>
                           <div className="name1 w-[30%] text-end">
                             {taxVal &&
@@ -119,9 +137,7 @@ const CartItems = () => {
                           className="button-var-2"
                           onClick={(e) => {
                             e.preventDefault();
-                            if (totalCost >= 0) {
-                              dispatch(removeCost(finVal));
-                            }
+                            dispatch(removeCost(finVal));
                             dispatch(removeCartProduct(p._id));
                           }}
                         >
@@ -211,6 +227,7 @@ const CartItems = () => {
                           onClick={(e) => {
                             e.preventDefault();
                             dispatch(removeCost(finVal));
+
                             dispatch(removeCartService(p._id));
                           }}
                         >
@@ -228,19 +245,7 @@ const CartItems = () => {
             </div>
           )}
         </div>
-        <div className="checkout w-full flex flex-col gap-3">
-          <h1 className="text-[3rem] font-[600]">
-            Check<span>out</span>
-          </h1>
-          <div className="row1 w-full flex items-center justify-between">
-            <h1 className="text-[1.3rem] font-[500]">
-              Total Items : <span>{totalItems}</span>
-            </h1>
-            <h1 className="text-[1.3rem] font-[500]">
-              Total Cost : <span>{totalCost.toFixed(2)}</span>
-            </h1>
-          </div>
-        </div>
+
         {/* <h1>Your Cart - <span>Services</span> </h1> */}
       </div>
     </div>

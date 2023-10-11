@@ -29,12 +29,11 @@ const HeroService = () => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const amount =
+      bestSellingService &&
       bestSellingService[0].price &&
       bestSellingService[0].price +
         FindTax("service", bestSellingService[0].price).tax;
-    // dispatch(addCost(Number(amount.toFixed(2))));
     dispatch(addCost(amount));
-
     dispatch(addCartServices(bestSellingService[0]));
     toast.success("Service added to cart");
   };

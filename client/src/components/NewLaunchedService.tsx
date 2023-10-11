@@ -4,7 +4,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { getNewlyLaunchedService } from "../apis/api";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
-import { addCartServices } from "../store/cartSlice";
+import { addCartServices, addCost } from "../store/cartSlice";
+import { FindTax } from "../services/Tax";
+import { NewlyLauncedServices } from "../services/Props";
 
 const NewLaunchedService = () => {
   const { newlyLaunchedServices } = useSelector(
@@ -24,8 +26,10 @@ const NewLaunchedService = () => {
     };
     fetchNewlyLaunchedService();
   }, []);
-  const handleClick = (e: React.MouseEvent, id: object) => {
+  const handleClick = (e: React.MouseEvent, id: NewlyLauncedServices) => {
     e.preventDefault();
+    const amount = id.price + FindTax("service", id.price).tax;
+    dispatch(addCost(amount));
     dispatch(addCartServices(id));
     toast.success("Service added to cart");
   };
