@@ -32,6 +32,7 @@ const initialState: InitialProp = {
     images: [],
     createdAt: "",
     updatedAt: "",
+    quantity: 0,
   },
   selectedServiceId: "",
 };
@@ -64,7 +65,7 @@ export const {
   storeBestSellingService,
   storeNewlyLaunchedServices,
   storeServices,
-  storeService
+  storeService,
 } = serviceSlice.actions;
 
 export default serviceSlice.reducer;

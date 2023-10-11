@@ -2,15 +2,11 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { motion } from "framer-motion";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { IRootState } from "../store/store";
-import React from "react";
 import { setSelectedProductId } from "../store/productsSlice";
-import { addCartProducts, addCost } from "../store/cartSlice";
-import { toast } from "react-toastify";
-import { ProductsProp } from "../services/Props";
-import { FindTax } from "../services/Tax";
+import { IRootState } from "../store/store";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -29,14 +25,7 @@ const ProductsAll = () => {
     dispatch(setSelectedProductId(id));
     navigate(`/product/${title}`);
   };
-  const handleClickAddCart = (e: React.MouseEvent, id: ProductsProp) => {
-    e.preventDefault();
-    const amount =
-      id.discountedPrice + FindTax("product", id.discountedPrice).tax;
-    dispatch(addCost(amount));
-    dispatch(addCartProducts(id));
-    toast.success("Item added to cart");
-  };
+
   return (
     <div className="min-h-[100vh] flex flex-col gap-5 mt-[12vh]">
       <div className="title w-[95%] mx-auto">
