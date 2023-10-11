@@ -35,6 +35,10 @@ const ProductSchema = new mongoose.Schema(
     },
     about: [],
     box: [],
+    quantity: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

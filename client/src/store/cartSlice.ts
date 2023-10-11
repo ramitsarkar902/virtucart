@@ -24,20 +24,62 @@ export const cartSlice = createSlice({
       state.services = action.payload;
     },
     addCartProducts: (state, action) => {
-      state.products.push(action.payload);
+      const productToAdd = action.payload;
+      const existingProduct = state.products.find(
+        (p) => p._id === productToAdd._id
+      );
+      if (existingProduct) existingProduct.quantity += 1;
+      else {
+        state.products.push({
+          ...productToAdd,
+          quantity: 1,
+        });
+      }
     },
     addCartServices: (state, action) => {
-      state.services.push(action.payload);
+      const serviceToAdd = action.payload;
+      const existingService = state.services.find(
+        (p) => p._id === serviceToAdd._id
+      );
+      if (existingService) existingService.quantity += 1;
+      else {
+        state.services.push({
+          ...serviceToAdd,
+          quantity: 1,
+        });
+      }
     },
     removeCartService: (state, action) => {
-      state.services = state.services.filter(
-        (service) => service._id !== action.payload
+      const serviceIdToRemove = action.payload;
+      const serviceIndex = state.services.findIndex(
+        (p) => p._id === serviceIdToRemove
       );
+
+      if (serviceIndex !== -1) {
+        if (state.services[serviceIndex].quantity > 1) {
+          state.services[serviceIndex].quantity--;
+        } else {
+          state.services = state.services.filter(
+            (p) => p._id !== serviceIdToRemove
+          );
+        }
+      }
     },
     removeCartProduct: (state, action) => {
-      state.products = state.products.filter(
-        (service) => service._id !== action.payload
+      const productIdToRemove = action.payload;
+      const productIndex = state.products.findIndex(
+        (p) => p._id === productIdToRemove
       );
+
+      if (productIndex !== -1) {
+        if (state.products[productIndex].quantity > 1) {
+          state.products[productIndex].quantity--;
+        } else {
+          state.products = state.products.filter(
+            (p) => p._id !== productIdToRemove
+          );
+        }
+      }
     },
     addCost: (state, action) => {
       state.totalCost = state.totalCost + action.payload;
@@ -56,7 +98,7 @@ export const {
   removeCartProduct,
   removeCartService,
   addCost,
-  removeCost
+  removeCost,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

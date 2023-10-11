@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { getBestSellingService } from "../apis/api";
+import { FindTax } from "../services/Tax";
+import { addCartServices, addCost } from "../store/cartSlice";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
 import Loader from "./Loader";
-import { addCartServices, addCost } from "../store/cartSlice";
-import { FindTax } from "../services/Tax";
 
 const HeroService = () => {
   const { bestSellingService } = useSelector(
@@ -83,7 +83,7 @@ const HeroService = () => {
         </div>
       )}
 
-      <ToastContainer theme="dark" />
+      <ToastContainer className="z-50 mt-[8rem]" theme="dark" />
       {/* <iframe
         className="w-full h-full"
         src="https://my.spline.design/iphone14procopy-d913a52c8fbbc39d79d45caab7ed9305/"

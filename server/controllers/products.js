@@ -132,3 +132,5 @@ export const productSold = async (req, res, next) => {
     next(error);
   }
 };
+
+

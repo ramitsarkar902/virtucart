@@ -19,8 +19,8 @@ export interface BestSellingProduct {
   _id: string;
   title: string;
   description: string;
-  originalPrice:number;
-  discountedPrice:number;
+  originalPrice: number;
+  discountedPrice: number;
   brand: string;
   thumbnail: string;
 }
@@ -39,8 +39,8 @@ export interface ProductsProp {
   description: string;
   originalPrice: number;
   discountedPrice: number;
-  about:[];
-  box:[];
+  about: [];
+  box: [];
   rating: number;
   stock: number;
   brand: string;
@@ -49,6 +49,7 @@ export interface ProductsProp {
   images: [];
   createdAt: string;
   updatedAt: string;
+  quantity: 0;
 }
 
 export interface ServicesProp {
@@ -56,8 +57,8 @@ export interface ServicesProp {
   title: string;
   description: string;
   price: number;
-  about:[];
-  box:[];
+  about: [];
+  box: [];
   rating: number;
   stock: number;
   providedBy: string;
@@ -66,13 +67,14 @@ export interface ServicesProp {
   images: [];
   createdAt: string;
   updatedAt: string;
+  quantity: 0;
 }
 
 export interface BestSellingService {
   _id: string;
   title: string;
   description: string;
-  price:number;
+  price: number;
   providedBy: string;
   thumbnail: string;
 }
