@@ -1,8 +1,9 @@
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "../../store/store";
 import { Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FindTax } from "../../services/Tax";
 import {
   clearCartProducts,
@@ -12,8 +13,7 @@ import {
   removeCartService,
   removeCost,
 } from "../../store/cartSlice";
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { IRootState } from "../../store/store";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -22,7 +22,6 @@ const useStyles = makeStyles({
 });
 
 const CartItems = () => {
-  const [cartId, setCardId] = useState<Array<"">>([]);
   const [totalItems, setTotalItems] = useState(0);
 
   const classes = useStyles();

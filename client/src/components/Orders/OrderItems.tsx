@@ -1,6 +1,8 @@
-import Navbar from "../components/Navbar";
+
 import { ToastContainer } from "react-toastify";
-import CartItems from "../components/Cart/CartItems";
+import Navbar from "../Navbar";
+import CartItems from "../Cart/CartItems";
+
 const Cart = () => {
   return (
     <div className="flex flex-col cartbg relative">

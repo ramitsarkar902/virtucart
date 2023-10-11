@@ -18,7 +18,6 @@ const useStyles = makeStyles({
 });
 
 const OrderItems = () => {
-  const [cartId, setCardId] = useState<Array<"">>([]);
   const [totalItems, setTotalItems] = useState(0);
 
   const classes = useStyles();

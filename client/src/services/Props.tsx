@@ -51,6 +51,7 @@ export interface ProductsProp {
   images: [];
   createdAt: string;
   updatedAt: string;
+  quantity: 0;
 }
 
 export interface ServicesProp {
@@ -68,6 +69,7 @@ export interface ServicesProp {
   images: [];
   createdAt: string;
   updatedAt: string;
+  quantity: 0;
 }
 
 export interface BestSellingService {
