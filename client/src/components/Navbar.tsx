@@ -44,7 +44,11 @@ const Navbar = () => {
       navigate("/");
     }
     if (id1 === 3) {
-      navigate(`/products/${id2.toLowerCase()}`);
+      if (id2 === "All products") {
+        navigate(`/products/all`);
+      } else {
+        navigate(`/products/${id2.toLowerCase()}`);
+      }
     } else if (id1 === 4) {
       navigate(`/services`);
     }
@@ -184,6 +188,8 @@ const Navbar = () => {
                               e.preventDefault();
                               if (n.id === 1 && f.id === 4) {
                                 Logout(dispatch, navigate);
+                              } else if (n.id === 1 && f.id === 1) {
+                                navigate("/orders");
                               } else {
                                 handleClick(e, n.id, f.name);
                               }
@@ -325,6 +331,8 @@ const Navbar = () => {
                             e.preventDefault();
                             if (f.id === 4) {
                               Logout(dispatch, navigate);
+                            } else if (f.id === 1) {
+                              navigate("/orders");
                             }
                           }}
                         >

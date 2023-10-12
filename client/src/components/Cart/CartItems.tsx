@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getUser, orderProducts, orderServices } from "../../apis/api";
 import { FindTax } from "../../services/Tax";
+// import SuccessAnimation from "actually-accessible-react-success-animation";
+
 import {
   addCartProducts,
   addCartServices,
@@ -19,6 +21,7 @@ import {
   removeCost,
 } from "../../store/cartSlice";
 import { IRootState } from "../../store/store";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -27,12 +30,15 @@ const useStyles = makeStyles({
 });
 
 const CartItems = () => {
-  const { userData, token } = useSelector((state: IRootState) => state.user);
+  const { userData, token, isLoggedIn } = useSelector(
+    (state: IRootState) => state.user
+  );
   const [totalItems, setTotalItems] = useState(0);
   const error = "";
 
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { products, services, totalCost } = useSelector(
     (state: IRootState) => state.cart
   );
@@ -52,48 +58,63 @@ const CartItems = () => {
 
   const handleSubmitOrder = async (e: React.MouseEvent) => {
     e.preventDefault();
-    const newOrder = [];
-    const newOrder1 = [];
-    if (products && products.length > 0) {
-      for (let i = 0; i < products.length; i++) {
-        newOrder.push({
-          _id: products[i]._id,
-          quantity: products[i].quantity,
-        });
+    if (isLoggedIn) {
+      const newOrder = [];
+      const newOrder1 = [];
+      if (products && products.length > 0) {
+        for (let i = 0; i < products.length; i++) {
+          newOrder.push({
+            _id: products[i]._id,
+            quantity: products[i].quantity,
+          });
+        }
       }
-    }
-    if (services && services.length > 0) {
-      for (let i = 0; i < services.length; i++) {
-        newOrder1.push({
-          _id: services[i]._id,
-          quantity: services[i].quantity,
-        });
+      if (services && services.length > 0) {
+        for (let i = 0; i < services.length; i++) {
+          newOrder1.push({
+            _id: services[i]._id,
+            quantity: services[i].quantity,
+          });
+        }
       }
-    }
-    if (services && services.length > 0) {
-      await orderServices(newOrder1, userData._id, token, error);
-    }
+      if (services && services.length > 0) {
+        await orderServices(newOrder1, userData._id, token, error);
+      }
 
-    if (products && products.length > 0) {
-      await orderProducts(newOrder, userData._id, token, error);
-    }
-    if (error === "") {
-      dispatch(clearCartProducts());
-      dispatch(clearCartServices());
-      dispatch(clearCost());
-      await getUser(dispatch, userData._id, token);
-    
+      if (products && products.length > 0) {
+        await orderProducts(newOrder, userData._id, token, error);
+      }
+
+      if (error === "") {
+        dispatch(clearCartProducts());
+        dispatch(clearCartServices());
+        dispatch(clearCost());
+        toast.success("Order placed suucessfully");
+      } else {
+        toast.warn(error);
+      }
     } else {
-      toast.warn(error);
+      navigate("/login");
     }
   };
 
   return (
     <div className="w-full min-h-[100vh]">
       <div className="wrapper flex flex-col gap-10 w-[95%] mx-auto mt-[12vh]">
-        <h1 className="w-full text-center text-[1.5rem] xl:text-[2.5rem] font-[600]">
-          Your Cart - <span>Products</span>{" "}
-        </h1>
+        <div className="title flex flex-col md:flex-row items-center justify-between gap-5 md:gap-0">
+          <h1 className="w-full text-center text-[1.5rem] xl:text-[2.5rem] font-[600]">
+            Your Cart - <span>Products</span>{" "}
+          </h1>
+          <button
+            className="button-var-1"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/orders");
+            }}
+          >
+            Orders
+          </button>
+        </div>
         <div className="checkout w-full flex flex-col gap-3">
           <h1 className="text-[1.3rem] sm:text-[3rem] font-[600]">
             Check<span>out</span>
@@ -389,6 +410,11 @@ const CartItems = () => {
 
         {/* <h1>Your Cart - <span>Services</span> </h1> */}
       </div>
+      {/* <SuccessAnimation
+        text="Your trip is booked"
+        color="#FD74F8"
+        liveRegion="live"
+      /> */}
     </div>
   );
 };

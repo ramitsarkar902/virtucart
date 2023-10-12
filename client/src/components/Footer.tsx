@@ -3,7 +3,7 @@ import React from "react";
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-800 text-white py-12 mt-[10rem] flex flex-col w-full">
-      <div className="mx-auto flex justify-between items-center w-[90%]">
+      <div className="mx-auto flex justify-between  items-center w-[90%]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="col-span-2 lg:col-span-1">
             <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
@@ -14,36 +14,36 @@ const Footer: React.FC = () => {
             </p>
           </div>
           <div>
-            <h2 className="text-2xl font-bold mb-4">Explore</h2>
+            <h2 className="text-2xl font-bold mb-4">Products</h2>
             <ul>
               <li className="mb-2">
-                <a href="#">Home</a>
+                <a href="/products/all">Smartphones</a>
               </li>
               <li className="mb-2">
-                <a href="#">Shop</a>
+                <a href="/products/all">Laptops</a>
               </li>
               <li className="mb-2">
-                <a href="#">About Us</a>
+                <a href="/products/all">Mobile Covers</a>
               </li>
               <li className="mb-2">
-                <a href="#">Contact</a>
+                <a href="/products/all">Headphones</a>
               </li>
             </ul>
           </div>
           <div>
-            <h2 className="text-2xl font-bold mb-4">Categories</h2>
+            <h2 className="text-2xl font-bold mb-4">Services</h2>
             <ul>
               <li className="mb-2">
-                <a href="#">Clothing</a>
+                <a href="/services">Photography</a>
               </li>
               <li className="mb-2">
-                <a href="#">Shoes</a>
+                <a href="/services">Gym</a>
               </li>
               <li className="mb-2">
-                <a href="#">Accessories</a>
+                <a href="/services">Lifestyle</a>
               </li>
               <li className="mb-2">
-                <a href="#">Sale</a>
+                <a href="/services">Interior Design</a>
               </li>
             </ul>
           </div>

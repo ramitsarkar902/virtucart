@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductsByCategory } from "../apis/api";
+import { getProducts, getProductsByCategory } from "../apis/api";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { setActive, setIsLoading } from "../store/userSlice";
@@ -16,19 +16,32 @@ const Products = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (id) {
-      const fetchProducts = async () => {
-        dispatch(setIsLoading(true));
-        const res = await getProductsByCategory(dispatch, id);
-        if (typeof res === "string") {
-          toast.warn(res);
-        } else {
-          dispatch(setIsLoading(false));
-        }
-      };
-      fetchProducts();
+      if (id === "all") {
+        const fetchProducts = async () => {
+          dispatch(setIsLoading(true));
+          const res = await getProducts(dispatch);
+          if (typeof res === "string") {
+            toast.warn(res);
+          } else {
+            dispatch(setIsLoading(false));
+          }
+        };
+        fetchProducts();
+      } else {
+        const fetchProducts = async () => {
+          dispatch(setIsLoading(true));
+          const res = await getProductsByCategory(dispatch, id);
+          if (typeof res === "string") {
+            toast.warn(res);
+          } else {
+            dispatch(setIsLoading(false));
+          }
+        };
+        fetchProducts();
+      }
       const path = window.location.pathname;
       setCurrentPath(path);
-      console.log(currentPath);
+  
       if (
         currentPath !== "" &&
         (currentPath === "/home" || currentPath === "/")

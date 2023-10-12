@@ -8,10 +8,6 @@ export const NavItems = [
         name: "Orders",
       },
       {
-        id: 2,
-        name: "Help",
-      },
-      {
         id: 4,
         name: "Logout",
       },
@@ -41,23 +37,23 @@ export const NavItems = [
     fields: [
       {
         id: 1,
-        name: "Smartphones",
+        name: "All products",
       },
       {
         id: 2,
-        name: "Laptops",
+        name: "Smartphones",
       },
       {
         id: 3,
-        name: "Covers",
+        name: "Laptops",
       },
       {
         id: 4,
-        name: "Headphones",
+        name: "Covers",
       },
       {
         id: 5,
-        name: "All products",
+        name: "Headphones",
       },
     ],
   },

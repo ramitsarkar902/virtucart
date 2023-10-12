@@ -17,7 +17,9 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 
 function App() {
-  const { activeUrl } = useSelector((state: IRootState) => state.user);
+  const { activeUrl, userData } = useSelector(
+    (state: IRootState) => state.user
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     const path = window.location.pathname;

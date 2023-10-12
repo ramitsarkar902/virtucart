@@ -30,7 +30,13 @@ const ProductsAll = () => {
     <div className="min-h-[100vh] flex flex-col gap-5 mt-[12vh]">
       <div className="title w-[95%] mx-auto">
         <h1 className="text-[2rem] sm:text-[3rem] font-[600]">
-          Our <span>{id}</span>
+          {id === "all" ? (
+            <span>All Products</span>
+          ) : (
+            <span>
+              Our <span>{id}</span>
+            </span>
+          )}
         </h1>
       </div>
       <div className="wrapper w-[95%] mx-auto flex flex-col sm:flex-row sm:flex-wrap sm:justify-between lg:justify-center gap-5 xl:gap-16">

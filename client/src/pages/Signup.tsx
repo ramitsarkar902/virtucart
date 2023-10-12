@@ -10,8 +10,8 @@ import { useDispatch } from "react-redux";
 import { setIsLoggedIn } from "../store/userSlice";
 
 const Signup = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [inpType, setIntType] = useState("password");
   const [formDets, setFormDets] = useState<SignupProp>({
     name: "",
@@ -23,6 +23,7 @@ const Signup = () => {
     setScreenSize(window.innerWidth);
   }, []);
   const iconSize = screenSize >= 640 ? "medium" : "small";
+
 
   const handleChange = (e: any, id: number) => {
     e.preventDefault();
@@ -44,14 +45,15 @@ const Signup = () => {
     }
   };
 
-  const handleSubmit = async(e: React.MouseEvent) => {
+  const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
-    const res = await SignupApi(formDets);
+    const res = await SignupApi(formDets,dispatch);
     if (typeof res === "string") {
       toast.warn(res);
     } else {
       toast.success("User successfully created");
       dispatch(setIsLoggedIn(true));
+      navigate("/");
     }
   };
 

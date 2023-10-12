@@ -20,13 +20,15 @@ import {
 import { storeToken, storeUserData } from "../store/userSlice";
 import { api_url } from "./helper";
 
-export const SignupApi = async (formDets: SignupProp) => {
+export const SignupApi = async (formDets: SignupProp,dispatch:any) => {
   try {
     const res = await axios.post(`${api_url}/auth/signup`, {
       name: formDets.name,
       email: formDets.email,
       password: formDets.password,
     });
+    dispatch(storeUserData(res.data.userData));
+    dispatch(storeToken(res.data.token));
     return res.status;
   } catch (error: any) {
     return error.response.data;
@@ -75,6 +77,15 @@ export const getProductsByCategory = async (
     return error.response.data;
   }
 };
+export const getProducts = async (dispatch: any) => {
+  try {
+    const res = await axios.get(`${api_url}/products/all/products`);
+    dispatch(storeProducts(res.data));
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+
 export const getBestSellingService = async (dispatch: any) => {
   try {
     const res = await axios.get(`${api_url}/services/best/service`);
@@ -169,9 +180,13 @@ export const orderServices = async (
 
 export const getUser = async (dispatch: any, id: string, token: string) => {
   try {
+
+
     const res = await axios.get(`${api_url}/user/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+  
+    
     dispatch(storeUserData(res.data));
     return res.status;
   } catch (error: any) {
