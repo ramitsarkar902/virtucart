@@ -26,11 +26,16 @@ const Orders = () => {
   }, []);
 
   return (
-    <div className="flex flex-col cartbg relative">
-      <Navbar />
-      <OrderItems />
-      <ToastContainer theme="dark" />
-      {isLoading && <Loader />}
+    <div className="flex flex-col relative">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="flex flex-col cartbg relative">
+          <Navbar />
+          <OrderItems />
+          <ToastContainer theme="dark" />
+        </div>
+      )}
     </div>
   );
 };

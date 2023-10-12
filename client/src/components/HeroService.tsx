@@ -41,11 +41,11 @@ const HeroService = () => {
   };
   const navigate = useNavigate();
   return (
-    <div className="h-[130vh] w-full flex flex-col justify-center items-center p-[5rem]">
+    <div className="h-[100vh] w-full flex flex-col justify-center items-center p-[5rem]">
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="wrapper w-[95%] min-h-[100vh] mt-[30vh] mx-auto flex flex-col items-center justify-start pt-5">
+        <div className="wrapper w-[95%] h-[100vh] mt-[20vh] mx-auto flex flex-col items-center justify-start pt-5">
           <div className="top flex flex-col gap-5 md:gap-8 sm:w-[60%] xl:w-[40%]">
             <h1 className="text-[2.5rem] xl:text-[3.5rem] font-[600] text-center text-[#191919]">
               {Object.keys(bestSellingService).length !== 0
@@ -55,6 +55,9 @@ const HeroService = () => {
             <h1 className="text-center text-[0.85rem] md:text-[1.2rem] xl:text-[1.2rem] text-[#191919]">
               {Object.keys(bestSellingService).length !== 0
                 ? bestSellingService[0].description
+                    .split(" ")
+                    .splice(0, 8)
+                    .join(" ")
                 : "Getting Data..."}
             </h1>
             <div className="links flex w-full items-center justify-evenly">
@@ -76,7 +79,7 @@ const HeroService = () => {
               </h1>
             </div>
           </div>
-          <div className="bottom w-full h-[20rem] mx-auto flex bg-red-500">
+          <div className="bottom  flex">
             <img
               src={
                 bestSellingService &&
@@ -86,7 +89,7 @@ const HeroService = () => {
               loading="lazy"
               alt=""
               sizes=""
-              className="w-full"
+              className=""
             />
           </div>
         </div>
