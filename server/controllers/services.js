@@ -93,10 +93,13 @@ export const getNewServices = async (req, res, next) => {
 
 export const ServiceSold = async (req, res, next) => {
   try {
+    if (req.body.services.length==0) return res.status(403).json("Empty Array");
     req.body.services.map(async (p) => {
-      const a = await Service.findById(p);
-      await Service.findByIdAndUpdate(p, {
-        $inc: { sales: 1 },
+      const a = await Service.findById(p._id);
+      const q = p.quantity;
+
+      await Service.findByIdAndUpdate(p._id, {
+        $inc: { sales: q },
       });
       await User.findByIdAndUpdate(req.body.userId, {
         $push: {
@@ -107,6 +110,7 @@ export const ServiceSold = async (req, res, next) => {
             thumbnail: a.thumbnail,
             price: a.price,
             date: Date.now(),
+            quantity: q,
           },
         },
       });
