@@ -1,4 +1,4 @@
-Ecommerce and billing assignmenr for Plotline
+Ecommerce and billing assignment for Plotline
 
 Name: Ramit Sarkar
 Technologies Used: - Frontend:ReactJS, Javascript, Typescript, TailwindCSS - Backend:NodeJS, MongoDB, ExpressJS, Javascript
