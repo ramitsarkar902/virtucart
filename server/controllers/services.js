@@ -94,9 +94,11 @@ export const getNewServices = async (req, res, next) => {
 export const ServiceSold = async (req, res, next) => {
   try {
     req.body.services.map(async (p) => {
-      const a = await Service.findById(p);
+      const a = await Service.findById(p._id);
+      const q = p.quantity;
+
       await Service.findByIdAndUpdate(p, {
-        $inc: { sales: 1 },
+        $inc: { sales: q },
       });
       await User.findByIdAndUpdate(req.body.userId, {
         $push: {
@@ -107,6 +109,7 @@ export const ServiceSold = async (req, res, next) => {
             thumbnail: a.thumbnail,
             price: a.price,
             date: Date.now(),
+            quantity: q,
           },
         },
       });

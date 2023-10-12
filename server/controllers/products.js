@@ -105,23 +105,25 @@ export const getNewProducts = async (req, res, next) => {
 export const productSold = async (req, res, next) => {
   try {
     req.body.products.map(async (p) => {
-      const a = await Product.findById(p);
+      const a = await Product.findById(p._id);
+      const q = p.quantity;
 
       if (a.stock <= 0)
         return res.status(404).json("Product Currently Unavailable!");
 
       await Product.findByIdAndUpdate(p, {
-        $inc: { sales: 1, stock: -1 },
+        $inc: { sales: q, stock: -q },
       });
       await User.findByIdAndUpdate(req.body.userId, {
         $push: {
           productOrders: {
-            _id: p,
+            _id: p._id,
             title: a.title,
             price: a.discountedPrice,
             brand: a.brand,
             thumbnail: a.thumbnail,
             date: Date.now(),
+            quantity: q,
           },
         },
       });
@@ -132,5 +134,3 @@ export const productSold = async (req, res, next) => {
     next(error);
   }
 };
-
-
