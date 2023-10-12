@@ -30,7 +30,7 @@ To run this project locally, you'll need to follow these steps:
 1. Clone the repository to your local machine:
 
 ```bash
-git clone [https://github.com/ramitsarkar/virtucart.git](https://github.com/ramitsarkar902/virtucart.git)
+git clone https://github.com/ramitsarkar902/virtucart.git
 ```
 
 2. Install the required dependencies for both the frontend and backend:
