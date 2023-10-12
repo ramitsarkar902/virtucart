@@ -76,7 +76,7 @@ const HeroService = () => {
               </h1>
             </div>
           </div>
-          <div className="bottom w-full flex">
+          <div className="bottom w-full h-[20rem] mx-auto flex bg-red-500">
             <img
               src={
                 bestSellingService &&
