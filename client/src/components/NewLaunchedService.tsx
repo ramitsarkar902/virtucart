@@ -87,7 +87,7 @@ const NewLaunchedService = () => {
                       </h1>
                     </div>
                   </div>
-                  <div className="bottom flex justify-end items-end w-[30rem]">
+                  <div className="bottom flex justify-end items-end w-[95%] mx-auto md:w-[30rem]">
                     <img
                       src={n.thumbnail}
                       alt=""
