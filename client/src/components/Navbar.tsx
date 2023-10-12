@@ -66,7 +66,16 @@ const Navbar = () => {
       >
         Virtu<span>Cart</span>
       </h1>
-      <div className="menu sm:hidden relative">
+      <div className="menu sm:hidden flex gap-3 relative">
+        <ShoppingCartIcon
+          fontSize={iconSize}
+          className="cursor-pointer"
+          style={{ color: "white" }}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/cart");
+          }}
+        />
         <MenuIcon
           fontSize={iconSize}
           className="cursor-pointer"
