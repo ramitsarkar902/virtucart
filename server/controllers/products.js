@@ -111,7 +111,7 @@ export const productSold = async (req, res, next) => {
       if (a.stock <= 0)
         return res.status(404).json("Product Currently Unavailable!");
 
-      await Product.findByIdAndUpdate(p, {
+      await Product.findByIdAndUpdate(p._id, {
         $inc: { sales: q, stock: -q },
       });
       await User.findByIdAndUpdate(req.body.userId, {

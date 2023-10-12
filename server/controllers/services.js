@@ -97,7 +97,7 @@ export const ServiceSold = async (req, res, next) => {
       const a = await Service.findById(p._id);
       const q = p.quantity;
 
-      await Service.findByIdAndUpdate(p, {
+      await Service.findByIdAndUpdate(p._id, {
         $inc: { sales: q },
       });
       await User.findByIdAndUpdate(req.body.userId, {
