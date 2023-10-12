@@ -11,6 +11,5 @@ export const Logout = (dispatch: any, navigate: any) => {
   dispatch(setActive(2));
   dispatch(storeUserData([]));
   dispatch(storeToken(""));
-  dispatch(storeBestSellingProduct([]));
   navigate("/");
 };
