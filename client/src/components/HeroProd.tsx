@@ -7,11 +7,14 @@ import { addCartProducts, addCost } from "../store/cartSlice";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
 import Loader from "./Loader";
+import { useNavigate } from "react-router-dom";
+import { setSelectedProductId } from "../store/productsSlice";
 
 const HeroProd = () => {
   const { bestSellingProduct } = useSelector(
     (state: IRootState) => state.product
   );
+  const navigate = useNavigate();
   const { isLoading } = useSelector((state: IRootState) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -55,7 +58,13 @@ const HeroProd = () => {
                 : "Getting Data..."}
             </h1>
             <div className="links flex w-full items-center justify-evenly">
-              <h1 className="text-[#09dd6d] text-[1.2rem] md:text-[1.5rem] xl:text-[1.3rem]  font-[500] cursor-pointer">
+              <h1 className="text-[#09dd6d] text-[1.2rem] md:text-[1.5rem] xl:text-[1.3rem]  font-[500] cursor-pointer"
+              onClick={(e)=>{
+                e.preventDefault();
+                dispatch(setSelectedProductId(bestSellingProduct[0]._id));
+                navigate(`/product/${bestSellingProduct[0].title}`);
+              }}
+              >
                 Learn More {">"}
               </h1>
               <h1

@@ -7,6 +7,8 @@ import { addCartServices, addCost } from "../store/cartSlice";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
 import Loader from "./Loader";
+import { setSelectedServiceId } from "../store/serviceSlice";
+import { useNavigate } from "react-router-dom";
 
 const HeroService = () => {
   const { bestSellingService } = useSelector(
@@ -37,6 +39,7 @@ const HeroService = () => {
     dispatch(addCartServices(bestSellingService[0]));
     toast.success("Service added to cart");
   };
+  const navigate = useNavigate();
   return (
     <div className="h-[100vh] w-full flex flex-col justify-center items-center p-[5rem]">
       {isLoading ? (
@@ -55,7 +58,14 @@ const HeroService = () => {
                 : "Getting Data..."}
             </h1>
             <div className="links flex w-full items-center justify-evenly">
-              <h1 className="text-[#09dd6d] text-[1.2rem] md:text-[1.5rem] xl:text-[1.3rem]  font-[500] cursor-pointer">
+              <h1
+                className="text-[#09dd6d] text-[1.2rem] md:text-[1.5rem] xl:text-[1.3rem]  font-[500] cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(setSelectedServiceId(bestSellingService[0]._id));
+                  navigate(`/service/${bestSellingService[0].title}`);
+                }}
+              >
                 Learn More {">"}
               </h1>
               <h1

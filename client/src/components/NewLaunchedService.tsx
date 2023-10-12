@@ -7,6 +7,8 @@ import { FindTax } from "../services/Tax";
 import { addCartServices, addCost } from "../store/cartSlice";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
+import { setSelectedServiceId } from "../store/serviceSlice";
+import { useNavigate } from "react-router-dom";
 
 const NewLaunchedService = () => {
   const { newlyLaunchedServices } = useSelector(
@@ -33,6 +35,7 @@ const NewLaunchedService = () => {
     dispatch(addCartServices(id));
     toast.success("Service added to cart");
   };
+  const navigate = useNavigate();
   return (
     <div className="w-full h-fit flex flex-col mt-10 gap-10">
       <div className="title w-full flex justify-center items-center">
@@ -64,7 +67,14 @@ const NewLaunchedService = () => {
                       {n.description.split(" ").slice(0, 10).join(" ")}...
                     </h1>
                     <div className="button flex items-center justify-center gap-5">
-                      <h1 className="text-[1rem] font-[500]">
+                      <h1
+                        className="text-[1rem] font-[500]"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(setSelectedServiceId(n._id));
+                          navigate(`/service/${n.title}`);
+                        }}
+                      >
                         <span>Learn More {">"}</span>
                       </h1>
                       <h1
