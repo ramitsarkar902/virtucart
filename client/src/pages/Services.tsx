@@ -31,9 +31,9 @@ const Services = () => {
         <div className="wrapper flex flex-col">
           <Navbar />
           <ServicesAll />
+          <ToastContainer theme="dark" />
         </div>
       )}
-      <ToastContainer theme="dark" />
     </div>
   );
 };

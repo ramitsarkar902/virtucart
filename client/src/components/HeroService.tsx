@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { getBestSellingService } from "../apis/api";
 import { FindTax } from "../services/Tax";
 import { addCartServices, addCost } from "../store/cartSlice";
@@ -35,7 +35,7 @@ const HeroService = () => {
         FindTax("service", bestSellingService[0].price).tax;
     dispatch(addCost(amount));
     dispatch(addCartServices(bestSellingService[0]));
-    toast.success("Item added to cart");
+    toast.success("Service added to cart");
   };
   return (
     <div className="h-[100vh] w-full flex flex-col justify-center items-center p-[5rem]">
@@ -81,14 +81,6 @@ const HeroService = () => {
           </div>
         </div>
       )}
-
-      <ToastContainer className="z-50 mt-[8rem]" theme="dark" />
-      {/* <iframe
-        className="w-full h-full"
-        src="https://my.spline.design/iphone14procopy-d913a52c8fbbc39d79d45caab7ed9305/"
-        width="100%"
-        height="100%"
-      ></iframe> */}
     </div>
   );
 };

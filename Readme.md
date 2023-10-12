@@ -4,6 +4,9 @@ Name: Ramit Sarkar
 Technologies Used: - Frontend:ReactJS, Javascript, Typescript, TailwindCSS - Backend:NodeJS, MongoDB, ExpressJS, Javascript
 
 Clone the repo to run locally
+Both are using yarn
+Client local run command: yarn dev
+Server local run commmand: yarn start
 
 Server port is : 9000
 Server api url : http://localhost:9000/api/

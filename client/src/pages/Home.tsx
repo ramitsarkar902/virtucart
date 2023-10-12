@@ -6,7 +6,6 @@ import NewLaunchedProduct from "../components/NewLaunchedProduct";
 import NewLaunchedService from "../components/NewLaunchedService";
 import ScrollToTop from "../components/ScrollToTop";
 
-
 const Home = () => {
   return (
     <div className="w-full">
