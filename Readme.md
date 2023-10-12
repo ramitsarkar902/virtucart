@@ -13,6 +13,6 @@ Server api url : http://localhost:9000/api/
 
 Server hosted at Cyclic.sh and url is encoded in the .env file of client app along with the database in MongoDB atlas.
 
-Webssite hosted at - https://virtuecart.vercel.app/
+Website hosted at - https://virtuecart.vercel.app/
 
 Server unit tests are created using jest and stored in server/test folder
