@@ -86,10 +86,6 @@ cd server
 yarn run test
 ```
 
-## For testing purpose on the live website, login using the credentials
-# Email - testuser@gmail.com 
-# Password - 1234
-
 ## Server Information
 
 The server is hosted at [Cyclic.sh](https://www.cyclic.sh/). The API URL is encoded in the `.env` file of the client application.
@@ -97,6 +93,11 @@ The server is hosted at [Cyclic.sh](https://www.cyclic.sh/). The API URL is enco
 ## Website
 
 The live version of the website can be found at [https://virtuecart.vercel.app/](https://virtuecart.vercel.app/).
+
+# For testing purpose on the live website, login using the credentials
+
+## Email - testuser@gmail.com 
+## Password - 1234
 
 ## Additional Information
 
