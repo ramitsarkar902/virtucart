@@ -14,9 +14,12 @@ import Services from "./pages/Services";
 import Signup from "./pages/Signup";
 import { IRootState } from "./store/store";
 import { setActive, setActiveUrl } from "./store/userSlice";
+import Error from "./pages/Error";
 
 function App() {
-  const { activeUrl } = useSelector((state: IRootState) => state.user);
+  const { activeUrl, isLoggedIn } = useSelector(
+    (state: IRootState) => state.user
+  );
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -45,7 +48,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/orders" element={<Orders />} />
+        <Route path="/orders" element={isLoggedIn ? <Orders /> : <Error />} />
       </Routes>
       {currentPath === "/login" || currentPath === "/signup" ? "" : <Footer />}
     </div>

@@ -105,15 +105,17 @@ const CartItems = () => {
           <h1 className="w-full text-center text-[1.5rem] xl:text-[2.5rem] font-[600]">
             Your Cart - <span>Products</span>{" "}
           </h1>
-          <button
-            className="button-var-1"
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/orders");
-            }}
-          >
-            Orders
-          </button>
+          {isLoggedIn && (
+            <button
+              className="button-var-1"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/orders");
+              }}
+            >
+              Orders
+            </button>
+          )}
         </div>
         <div className="checkout w-full flex flex-col gap-3">
           <h1 className="text-[1.3rem] sm:text-[3rem] font-[600]">
