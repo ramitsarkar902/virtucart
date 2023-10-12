@@ -19,6 +19,8 @@ const initialState: InitialProp = {
     name: "",
     email: "",
     img: "",
+    productOrders: [],
+    serviceOrders: [],
   },
   token: "",
   activeUrl: "",

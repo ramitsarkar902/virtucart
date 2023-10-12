@@ -13,6 +13,8 @@ export interface UserDets {
   name: string;
   img: string;
   email: string;
+  productOrders: Array<ProductOrderProp>;
+  serviceOrders: Array<ServiceOrderProp>;
 }
 
 export interface BestSellingProduct {
@@ -88,4 +90,32 @@ export interface NewlyLauncedServices {
   price: number;
   providedBy: string;
   thumbnail: string;
+}
+
+export interface ProdOrder {
+  _id: string;
+  quantity: number;
+}
+export interface ServiceOrder {
+  _id: string;
+  quantity: number;
+}
+
+export interface ProductOrderProp {
+  _id: string;
+  title: string;
+  price: number;
+  brand: string;
+  thumbnail: string;
+  date: number;
+  quantity: number;
+}
+export interface ServiceOrderProp {
+  _id: string;
+  title: string;
+  price: number;
+  brand: string;
+  thumbnail: string;
+  date: number;
+  quantity: number;
 }

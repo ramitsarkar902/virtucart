@@ -55,6 +55,10 @@ export const NavItems = [
         id: 4,
         name: "Headphones",
       },
+      {
+        id: 5,
+        name: "All products",
+      },
     ],
   },
   {

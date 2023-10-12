@@ -1,4 +1,3 @@
-import { storeBestSellingProduct } from "../store/productsSlice";
 import {
   setActive,
   setIsLoggedIn,

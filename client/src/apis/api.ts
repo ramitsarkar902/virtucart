@@ -1,5 +1,10 @@
 import axios from "axios";
-import { LoginProp, SignupProp } from "../services/Props";
+import {
+  LoginProp,
+  ProdOrder,
+  ServiceOrder,
+  SignupProp,
+} from "../services/Props";
 import {
   storeBestSellingProduct,
   storeNewlyLaunchedProducts,
@@ -113,6 +118,61 @@ export const getServiceInfo = async (dispatch: any, id: string) => {
   try {
     const res = await axios.get(`${api_url}/services/${id}`);
     dispatch(storeService(res.data));
+    return res.status;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+
+export const orderProducts = async (
+  prodOrder: Array<ProdOrder>,
+  userId: string,
+  token: string,
+  error: string
+) => {
+  try {
+    const res = await axios.post(
+      `${api_url}/products/sell`,
+      {
+        userId: userId,
+        products: prodOrder,
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return res.status;
+  } catch (error: any) {
+    return (error = error.repsonse.data);
+  }
+};
+export const orderServices = async (
+  serviceOrder: Array<ServiceOrder>,
+  userId: string,
+  token: string,
+  error: string
+) => {
+  try {
+    const res = await axios.post(
+      `${api_url}/services/sell`,
+
+      {
+        userId: userId,
+        services: serviceOrder,
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    return res.status;
+  } catch (error: any) {
+    return (error = error.repsonse.data);
+  }
+};
+
+export const getUser = async (dispatch: any, id: string, token: string) => {
+  try {
+    const res = await axios.get(`${api_url}/user/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    dispatch(storeUserData(res.data));
     return res.status;
   } catch (error: any) {
     return error.response.data;

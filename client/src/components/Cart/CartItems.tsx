@@ -4,8 +4,13 @@ import { makeStyles } from "@mui/styles";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { getUser, orderProducts, orderServices } from "../../apis/api";
 import { FindTax } from "../../services/Tax";
 import {
+  addCartProducts,
+  addCartServices,
+  addCost,
   clearCartProducts,
   clearCartServices,
   clearCost,
@@ -22,7 +27,9 @@ const useStyles = makeStyles({
 });
 
 const CartItems = () => {
+  const { userData, token } = useSelector((state: IRootState) => state.user);
   const [totalItems, setTotalItems] = useState(0);
+  const error = "";
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -31,13 +38,56 @@ const CartItems = () => {
   );
   useEffect(() => {
     if (products && services) {
-      setTotalItems(products.length + services.length);
+      let prodLength = 0,
+        serviceLength = 0;
+      for (let i = 0; i < products.length; i++) {
+        prodLength += products[i].quantity;
+      }
+      for (let i = 0; i < services.length; i++) {
+        serviceLength += services[i].quantity;
+      }
+      setTotalItems(prodLength + serviceLength);
     }
   }, [products, services]);
 
-  const handleSubmitOrder = (e: React.MouseEvent) => {
+  const handleSubmitOrder = async (e: React.MouseEvent) => {
     e.preventDefault();
+    const newOrder = [];
+    const newOrder1 = [];
+    if (products && products.length > 0) {
+      for (let i = 0; i < products.length; i++) {
+        newOrder.push({
+          _id: products[i]._id,
+          quantity: products[i].quantity,
+        });
+      }
+    }
+    if (services && services.length > 0) {
+      for (let i = 0; i < services.length; i++) {
+        newOrder1.push({
+          _id: services[i]._id,
+          quantity: services[i].quantity,
+        });
+      }
+    }
+    if (services && services.length > 0) {
+      await orderServices(newOrder1, userData._id, token, error);
+    }
+
+    if (products && products.length > 0) {
+      await orderProducts(newOrder, userData._id, token, error);
+    }
+    if (error === "") {
+      dispatch(clearCartProducts());
+      dispatch(clearCartServices());
+      dispatch(clearCost());
+      await getUser(dispatch, userData._id, token);
+    
+    } else {
+      toast.warn(error);
+    }
   };
+
   return (
     <div className="w-full min-h-[100vh]">
       <div className="wrapper flex flex-col gap-10 w-[95%] mx-auto mt-[12vh]">
@@ -148,6 +198,7 @@ const CartItems = () => {
                           <div className="name1 w-[30%] text-center">
                             Tax Amnt
                           </div>
+                          <div className="name1 w-[30%] text-center">Qnt</div>
                           <div className="name1 w-[30%] text-end">Price</div>
                         </div>
                         <div className="rowvalue md:text-[1.1rem] xl:text-[1.3rem] font-[600] w-full flex items-center justify-between text-[#09dd6d]">
@@ -158,10 +209,39 @@ const CartItems = () => {
                           <div className="name1 w-[30%] text-center">
                             {Number(taxVal.toFixed(2))}
                           </div>
+                          <div className="name1 w-[30%] text-center">
+                            <span
+                              onClick={(e) => {
+                                e.preventDefault();
+                                dispatch(removeCost(finVal));
+                                dispatch(removeCartProduct(p._id));
+                              }}
+                            >
+                              {"- "}
+                            </span>
+                            {p.quantity && p.quantity}
+                            <span
+                              onClick={(e) => {
+                                e.preventDefault();
+                                const amount =
+                                  p.discountedPrice +
+                                  FindTax("product", p.discountedPrice).tax;
+                                dispatch(addCost(amount));
+                                dispatch(addCartProducts(p));
+                                toast.success("Item added to cart");
+                              }}
+                            >
+                              {" +"}
+                            </span>
+                          </div>
                           <div className="name1 w-[30%] text-end">
                             {taxVal &&
                               p.discountedPrice &&
-                              p.discountedPrice + taxVal}
+                              p.quantity &&
+                              (
+                                (p.discountedPrice + taxVal) *
+                                p.quantity
+                              ).toFixed(2)}
                           </div>
                         </div>
                       </div>
@@ -239,6 +319,7 @@ const CartItems = () => {
                           <div className="name1 w-[30%] text-center">
                             Tax Amnt
                           </div>
+                          <div className="name1 w-[30%] text-center">Qnt</div>
                           <div className="name1 w-[30%] text-end">Price</div>
                         </div>
                         <div className="rowvalue md:text-[1.1rem] xl:text-[1.3rem] font-[600] w-full flex items-center justify-between text-[#09dd6d]">
@@ -249,8 +330,35 @@ const CartItems = () => {
                           <div className="name1 w-[30%] text-center">
                             {taxVal}
                           </div>
+                          <div className="name1 w-[30%] text-center">
+                            <span
+                              onClick={(e) => {
+                                e.preventDefault();
+                                dispatch(removeCost(finVal));
+                                dispatch(removeCartService(p._id));
+                              }}
+                            >
+                              {"- "}
+                            </span>
+                            {p.quantity && p.quantity}
+                            <span
+                              onClick={(e) => {
+                                e.preventDefault();
+                                const amount =
+                                  p.price + FindTax("service", p.price).tax;
+                                dispatch(addCost(amount));
+                                dispatch(addCartServices(p));
+                                toast.success("Service added to cart");
+                              }}
+                            >
+                              {" +"}
+                            </span>
+                          </div>
                           <div className="name1 w-[30%] text-end">
-                            {taxVal && p.price && p.price + taxVal}
+                            {taxVal &&
+                              p.price &&
+                              p.quantity &&
+                              ((p.price + taxVal) * p.quantity).toFixed(2)}
                           </div>
                         </div>
                       </div>

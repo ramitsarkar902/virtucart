@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { ToastContainer } from "react-toastify";
 import OrderItems from "../components/OrderItem";
-const Cart = () => {
+const Orders = () => {
   return (
     <div className="flex flex-col cartbg relative">
       <Navbar />
@@ -11,4 +11,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Orders;

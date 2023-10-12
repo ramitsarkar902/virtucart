@@ -14,6 +14,7 @@ import Signup from "./pages/Signup";
 import { IRootState } from "./store/store";
 import { setActive, setActiveUrl } from "./store/userSlice";
 import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 
 function App() {
   const { activeUrl } = useSelector((state: IRootState) => state.user);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/orders" element={<Orders />} />
         {/* <Route path="/profile" element={<Profile />} /> */}
       </Routes>
       <Footer />
