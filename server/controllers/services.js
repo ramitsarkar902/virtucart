@@ -93,6 +93,7 @@ export const getNewServices = async (req, res, next) => {
 
 export const ServiceSold = async (req, res, next) => {
   try {
+    if (req.body.services.length==0) return res.status(403).json("Empty Array");
     req.body.services.map(async (p) => {
       const a = await Service.findById(p._id);
       const q = p.quantity;

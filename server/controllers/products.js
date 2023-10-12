@@ -104,6 +104,8 @@ export const getNewProducts = async (req, res, next) => {
 
 export const productSold = async (req, res, next) => {
   try {
+    if (req.body.products.length == 0)
+      return res.status(403).json("Empty Array");
     req.body.products.map(async (p) => {
       const a = await Product.findById(p._id);
       const q = p.quantity;
