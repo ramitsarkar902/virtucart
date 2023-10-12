@@ -20,7 +20,7 @@ import {
 import { storeToken, storeUserData } from "../store/userSlice";
 import { api_url } from "./helper";
 
-export const SignupApi = async (formDets: SignupProp,dispatch:any) => {
+export const SignupApi = async (formDets: SignupProp, dispatch: any) => {
   try {
     const res = await axios.post(`${api_url}/auth/signup`, {
       name: formDets.name,
@@ -151,8 +151,9 @@ export const orderProducts = async (
       { headers: { Authorization: `Bearer ${token}` } }
     );
     return res.status;
-  } catch (error: any) {
-    return (error = error.repsonse.data);
+  } catch (err: any) {
+    error = err.response.data;
+    return error;
   }
 };
 export const orderServices = async (
@@ -173,20 +174,18 @@ export const orderServices = async (
     );
 
     return res.status;
-  } catch (error: any) {
-    return (error = error.repsonse.data);
+  } catch (err: any) {
+    error = err.response.data;
+    return error;
   }
 };
 
 export const getUser = async (dispatch: any, id: string, token: string) => {
   try {
-
-
     const res = await axios.get(`${api_url}/user/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-  
-    
+
     dispatch(storeUserData(res.data));
     return res.status;
   } catch (error: any) {

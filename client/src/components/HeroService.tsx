@@ -35,7 +35,7 @@ const HeroService = () => {
         FindTax("service", bestSellingService[0].price).tax;
     dispatch(addCost(amount));
     dispatch(addCartServices(bestSellingService[0]));
-    toast.success("Service added to cart");
+    toast.success("Item added to cart");
   };
   return (
     <div className="h-[100vh] w-full flex flex-col justify-center items-center p-[5rem]">

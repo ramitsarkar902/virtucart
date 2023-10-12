@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -8,18 +8,19 @@ import Login from "./pages/Login";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
 // import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 import Service from "./pages/Service";
 import Services from "./pages/Services";
 import Signup from "./pages/Signup";
 import { IRootState } from "./store/store";
 import { setActive, setActiveUrl } from "./store/userSlice";
-import Cart from "./pages/Cart";
-import Orders from "./pages/Orders";
 
 function App() {
-  const { activeUrl, userData } = useSelector(
-    (state: IRootState) => state.user
-  );
+  const { activeUrl } = useSelector((state: IRootState) => state.user);
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const dispatch = useDispatch();
   useEffect(() => {
     const path = window.location.pathname;
@@ -46,9 +47,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Orders />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
       </Routes>
-      <Footer />
+      {currentPath === "/login" || currentPath === "/signup" ? "" : <Footer />}
     </div>
   );
 }

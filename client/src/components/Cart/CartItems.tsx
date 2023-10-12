@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { getUser, orderProducts, orderServices } from "../../apis/api";
+import { orderProducts, orderServices } from "../../apis/api";
 import { FindTax } from "../../services/Tax";
 // import SuccessAnimation from "actually-accessible-react-success-animation";
 
+import { useNavigate } from "react-router-dom";
 import {
   addCartProducts,
   addCartServices,
@@ -21,7 +22,6 @@ import {
   removeCost,
 } from "../../store/cartSlice";
 import { IRootState } from "../../store/store";
-import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   emptyIcon: {

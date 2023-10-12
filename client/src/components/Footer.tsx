@@ -1,4 +1,5 @@
 import React from "react";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 
 const Footer: React.FC = () => {
   return (
@@ -51,23 +52,21 @@ const Footer: React.FC = () => {
             <h2 className="text-2xl font-bold mb-4">Follow Us</h2>
             <ul className="flex space-x-4">
               <li>
-                <a href="#">
-                  <i className="fab fa-facebook"></i>
+                <a href="https://www.linkedin.com/in/ramit-sarkar-bb26581ba/">
+                  <BsLinkedin
+                    style={{
+                      color: "#09dd6d",
+                    }}
+                  />
                 </a>
               </li>
               <li>
-                <a href="#">
-                  <i className="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fab fa-instagram"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fab fa-pinterest"></i>
+                <a href="https://github.com/ramitsarkar902">
+                  <BsGithub
+                    style={{
+                      color: "#09dd6d",
+                    }}
+                  />
                 </a>
               </li>
             </ul>

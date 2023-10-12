@@ -1,13 +1,13 @@
+import FiberSmartRecordIcon from "@mui/icons-material/FiberSmartRecord";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { Rating } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "../../store/store";
-import { Rating } from "@mui/material";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { makeStyles } from "@mui/styles";
-import FiberSmartRecordIcon from "@mui/icons-material/FiberSmartRecord";
-import { addCartServices, addCost } from "../../store/cartSlice";
-import { FindTax } from "../../services/Tax";
 import { toast } from "react-toastify";
+import { FindTax } from "../../services/Tax";
+import { addCartServices, addCost } from "../../store/cartSlice";
+import { IRootState } from "../../store/store";
 
 const useStyles = makeStyles({
   emptyIcon: {
@@ -29,7 +29,7 @@ const Section1 = () => {
     const amount = service.price + FindTax("service", service.price).tax;
     dispatch(addCost(amount));
     dispatch(addCartServices(service));
-    toast.success("Item added to cart");
+    toast.success("Service added to cart");
   };
   return (
     <div className="h-auto mt-[10vh] w-full">

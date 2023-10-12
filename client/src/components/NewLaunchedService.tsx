@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { getNewlyLaunchedService } from "../apis/api";
+import { NewlyLauncedServices } from "../services/Props";
+import { FindTax } from "../services/Tax";
+import { addCartServices, addCost } from "../store/cartSlice";
 import { IRootState } from "../store/store";
 import { setIsLoading } from "../store/userSlice";
-import { addCartServices, addCost } from "../store/cartSlice";
-import { FindTax } from "../services/Tax";
-import { NewlyLauncedServices } from "../services/Props";
 
 const NewLaunchedService = () => {
   const { newlyLaunchedServices } = useSelector(
@@ -90,7 +90,7 @@ const NewLaunchedService = () => {
             })}
         </div>
       </div>
-      {/* <ToastContainer theme="dark" /> */}
+      <ToastContainer theme="dark" />
     </div>
   );
 };
