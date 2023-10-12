@@ -86,6 +86,10 @@ cd server
 yarn run test
 ```
 
+## For testing purpose on the live website, login using the credentials
+# Email - testuser@gmail.com 
+# Password - 1234
+
 ## Server Information
 
 The server is hosted at [Cyclic.sh](https://www.cyclic.sh/). The API URL is encoded in the `.env` file of the client application.
