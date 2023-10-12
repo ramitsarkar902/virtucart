@@ -1,4 +1,4 @@
-# VirtueCart
+# VirtuCart
 
 # Author
 Ramit Sarkar
@@ -6,7 +6,7 @@ Manipal University Jaipur
 
 ## Description
 
-VirtueCart is an e-commerce and billing application developed as an assignment for Plotline. The project is divided into two main parts: the frontend and the backend.
+VirtuCart is an e-commerce and billing application developed as an assignment for Plotline. The project is divided into two main parts: the frontend and the backend.
 
 ## Technologies Used
 
@@ -30,13 +30,13 @@ To run this project locally, you'll need to follow these steps:
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/ramitsarkar/virtuecart.git
+git clone https://github.com/ramitsarkar/virtucart.git
 ```
 
 2. Install the required dependencies for both the frontend and backend:
 
 ```bash
-cd virtuecart/client
+cd virtucart/client
 yarn install
 
 cd ../server
@@ -92,7 +92,7 @@ The server is hosted at [Cyclic.sh](https://www.cyclic.sh/). The API URL is enco
 
 ## Website
 
-The live version of the website can be found at [https://virtuecart.vercel.app/](https://virtuecart.vercel.app/).
+The live version of the website can be found at [https://virtuecart.vercel.app/](https://virtucart.vercel.app/).
 
 # For testing purpose on the live website, login using the credentials
 
