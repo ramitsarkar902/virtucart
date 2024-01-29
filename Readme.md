@@ -2,11 +2,10 @@
 
 # Author
 Ramit Sarkar
-Manipal University Jaipur
 
 ## Description
 
-VirtuCart is an e-commerce and billing application developed as an assignment for Plotline. The project is divided into two main parts: the frontend and the backend.
+VirtuCart is an e-commerce and billing application.
 
 ## Technologies Used
 
